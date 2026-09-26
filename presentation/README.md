@@ -1,13 +1,13 @@
 # Interactive presentation
 
-A Remotion presentation of [the report](../neolithic-acoustic-signal-network.md): eight slides with live controls.
+A Remotion presentation of [the report](../neolithic-acoustic-signal-network.md): eight slides with live controls, laid out like the pages of a white paper.
 
 Open **`web/index.html`** in a browser. It is one self-contained file (slides, player and fonts inlined) and needs no server.
 
 - **Present** plays each slide's intro once and then loops its ambient animation. Move with ← → or the chapter list; press F for full screen.
 - **Watch the film** plays all eight slides as one 97-second video with a scrubber.
 - The panel beside the slide changes with it:
-  - **Range model** and **Cluster connectivity**: receiver gain, air absorption and the no-gain reference range. The curve, the in-range links and the "n of 5 clusters" count follow.
+  - **Range model** and **Cluster connectivity**: receiver gain, air absorption and the no-gain reference range. The curve, the in-range links and the "n of 5 clusters" count follow. **Slieve Gullion relays** adds the summit passage tomb and the Long Stone to that cluster, which cuts its longest hop from 4.67 km to 2.92 km (report §3.1).
   - **Exploded model**: how far the tomb comes apart, and whether the cairn is shown.
   - **Pulse code**: pick any of the 20 states and play its pulses (250 Hz low, 500 Hz high).
 

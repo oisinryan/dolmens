@@ -64,7 +64,7 @@ export const SLIDES: Slide[] = [
     duration: 360,
     loopStart: 240,
     notes:
-      "For each recognised cluster, the minimum spanning tree over its listed tombs gives the longest hop needed to keep it connected. Four of five connect with hops of 2.62 km or less; Slieve Gullion needs 4.67 km. Spacing alone does not show intent.",
+      "For each recognised cluster, the minimum spanning tree over its listed tombs gives the longest hop needed to keep it connected. Four of five connect with hops of 2.62 km or less; Slieve Gullion needs 4.67 km, a hop that crosses the mountain's summit. Turn on its relays (the summit passage tomb and the Long Stone) and that falls to 2.92 km. Spacing alone does not show intent.",
   },
   {
     id: "Exploded",

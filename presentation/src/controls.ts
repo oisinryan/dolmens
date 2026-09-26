@@ -14,6 +14,8 @@ export type Controls = {
   /** 0 = assembled tomb, 1 = fully exploded */
   explode: number;
   showCairn: boolean;
+  /** add Slieve Gullion's summit cairn and the Long Stone as relay points */
+  gullionRelays: boolean;
 };
 
 export const DEFAULTS: Controls = {
@@ -25,6 +27,7 @@ export const DEFAULTS: Controls = {
   value: 3,
   explode: 1,
   showCairn: true,
+  gullionRelays: false,
 };
 
 /**

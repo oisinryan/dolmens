@@ -40,7 +40,8 @@ export const TOP7 = COUNTIES.slice(0, 7);
 export const TOP7_TOTAL = TOP7.reduce((s, c) => s + c.n, 0);
 
 /** The five recognised clusters, with the site positions the analysis used */
-export type Cluster = { id: string; name: string; county: string; sites: { name: string; at: LatLon }[] };
+export type Site = { name: string; at: LatLon; relay?: string };
+export type Cluster = { id: string; name: string; county: string; sites: Site[]; relays?: Site[] };
 export const CLUSTERS: Cluster[] = [
   {
     id: "ballyvennaght",
@@ -94,13 +95,21 @@ export const CLUSTERS: Cluster[] = [
       { name: "Aughadanove", at: [54.125021, -6.472466] },
       { name: "Ballykeel", at: [54.131429, -6.478222] },
     ],
+    // surviving non-portal-tomb monuments near the cluster's centre (NI SMR, 2018)
+    relays: [
+      { name: "Summit cairn", at: [54.12179, -6.43369], relay: "Neolithic passage tomb, ARM028:007" },
+      { name: "Long Stone", at: [54.14935, -6.4454], relay: "Standing stone, ARM028:001" },
+    ],
   },
 ];
 
-export const CLUSTER_LINKS = CLUSTERS.map((c) => {
-  const edges = minimumSpanningTree(c.sites.map((s) => s.at));
-  return { ...c, edges, bottleneck: Math.max(...edges.map((e) => e.km)) };
-});
+/** each cluster's minimum spanning tree; with `relays`, Slieve Gullion also uses its summit cairn and the Long Stone */
+export const clusterLinks = (relays: boolean) =>
+  CLUSTERS.map((c) => {
+    const nodes = relays && c.relays ? [...c.sites, ...c.relays] : c.sites;
+    const edges = minimumSpanningTree(nodes.map((s) => s.at));
+    return { ...c, nodes, edges, bottleneck: Math.max(...edges.map((e) => e.km)) };
+  });
 
 export const clusterCentre = (c: Cluster): LatLon => [
   c.sites.reduce((s, x) => s + x.at[0], 0) / c.sites.length,

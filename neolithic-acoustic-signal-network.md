@@ -85,6 +85,41 @@ The metric below is the **largest minimum relay hop** required to keep each clus
 - Slieve Gullion is the outlier, requiring about **4.67 km**.
 - These ranges are compatible with powerful horn signalling under favourable terrain and atmospheric conditions.
 - This does not establish intentional communications use; it establishes only that the spacing is physically interesting.
+- Slieve Gullion's long hop runs over the mountain's summit; with two surviving non-portal-tomb monuments as relays it drops to 2.92 km (§3.1).
+
+### 3.1 Slieve Gullion: what sits in the middle
+
+The four Slieve Gullion portal tombs ring the mountain. Their mean position (54.1367 N, 6.4475 W) falls on its upper northern slope, 2.1–3.4 km from each tomb. The Northern Ireland Sites and Monuments Record (2018 copy) lists everything within 6 km of that point. Nothing is recorded within 1 km of it, but the mountain above it carries two cairns:
+
+| SMR number | Monument | Period | From the centre |
+|---|---|---|---:|
+| ARM028:006 | North Cairn, Slieve Gullion: multiple cist cairn | Bronze Age | 1.00 km |
+| ARM028:001 | The Long Stone, Ballard: standing stone | Prehistoric | 1.42 km |
+| ARM028:007 | South Cairn, Slieve Gullion ("Calliagh Berra's House"): passage tomb | Neolithic | 1.88 km |
+
+**The long hop crosses the summit.** The 4.67 km Clonlum–Aughadanove link passes 0.3 km from the summit passage tomb, halfway along. The summit is 573 m high and the tombs lie well below it, so at 250–500 Hz a direct link would lose heavily to diffraction over the ridge. In this model it would need a relay, and the summit is the obvious place for one.
+
+**Relays shorten the network.** Recomputing the minimum spanning tree with surviving non-portal-tomb monuments as extra nodes:
+
+| Nodes | Longest required hop |
+|---|---:|
+| Four portal tombs | 4.67 km |
+| + summit passage tomb | 4.65 km |
+| + the Long Stone | 4.05 km |
+| + summit passage tomb and the Long Stone | **2.92 km** |
+
+The summit alone splits Clonlum's link into 2.16 km and 2.55 km, but Aghmakane, in the north, stays 4.65 km from every other node. The Long Stone, between Aghmakane and the mountain, closes that gap (1.92 km). With both, Slieve Gullion falls in line with the other four clusters. These are flat map distances; the terrain between the points has not been checked.
+
+**What may have been lost.**
+
+1. *Recorded tombs whose position is lost:* megalithic tombs in Meigh (ARM029:035) and Aghadavoyle (ARM029:034), located only to the nearest kilometre, on the south and east sides of the mountain.
+2. *Unclassified or possible tombs:* the Giant's Grave at Latbirget (ARM028:002) beside Ballykeel, a standing stone at Aughadanove that may be a tomb (ARM028:005), and a mound at Tullymacreeve (ARM028:022). If any were portal tombs, the cluster graph changes.
+3. *Perishable structures:* timber platforms, listening collectors, or fire and smoke stations would leave little trace.
+4. *The monuments' original form:* cairns have been robbed and reduced, and the summit cairns have been dug into.
+
+**Cautions.** The summit passage tomb is probably younger than the portal tombs (c. 3800–3200 BC), and the North Cairn is Bronze Age, so the hub may be a later addition rather than part of an original design. A summit that overlooks all four tombs also suits fire or smoke signalling at least as well as sound, which weakens the case for an acoustic system specifically.
+
+Lady Gregory's *Gods and Fighting Men* sets "The Hunt of Slieve Cuilinn" here: Finn is aged at the lake beside the summit, and the Fianna dig into "the hill of the Sidhe" for three days and nights until Cuilinn comes out of it. The story may preserve a memory of people digging into the summit cairn, but it is not evidence of one.
 
 ## 4. Transmitter model
 
@@ -378,7 +413,7 @@ A high-tech Remotion presentation concept has been designed around the following
    Receiver gain versus viable relay distance.
 
 5. **Cluster Connectivity**  
-   Ballyvennaght, Malin More, Burren, Easkey and Slieve Gullion.
+   Ballyvennaght, Malin More, Burren, Easkey and Slieve Gullion, with an optional Slieve Gullion variant that adds the summit passage tomb and the Long Stone as relays (§3.1).
 
 6. **Exploded Model**  
    Portal tomb acoustic-station conceptual reconstruction.
@@ -443,6 +478,11 @@ The current model therefore remains:
   https://www.cambridge.org/core/journals/antiquity/article/architecture-and-sound-an-acoustic-analysis-of-megalithic-monuments-in-prehistoric-britain/F37AF50641B26AC288BA756A1C12EA33
 - Palaeolithic conch acoustic study:  
   https://pmc.ncbi.nlm.nih.gov/articles/PMC7875526/
+- Northern Ireland Sites and Monuments Record, 18 May 2018 copy, as an ArcGIS layer (used for §3.1):  
+  https://services3.arcgis.com/HRuPlEcokYlz4mdz/arcgis/rest/services/NI_SMR_18_5_18/FeatureServer/0
+- Slieve Gullion passage tomb and the Ring of Gullion monuments:  
+  https://ringofgullion.org/landscape-heritage/built-heritage/
+- Lady Gregory, *Gods and Fighting Men* (Project Gutenberg #14465), Part II Book 4, Chapter XV, "The Hunt of Slieve Cuilinn".
 
 ---
 

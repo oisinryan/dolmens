@@ -1,40 +1,52 @@
 import { continueRender, delayRender } from "remotion";
-import plexUrl from "@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2";
+import plexSansUrl from "@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2";
+import plexSerif400 from "@fontsource/ibm-plex-serif/files/ibm-plex-serif-latin-400-normal.woff2";
+import plexSerif400i from "@fontsource/ibm-plex-serif/files/ibm-plex-serif-latin-400-italic.woff2";
+import plexSerif500 from "@fontsource/ibm-plex-serif/files/ibm-plex-serif-latin-500-normal.woff2";
 import monoUrl from "@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2";
 
-// Bundled variable fonts: no network needed to render or to open the page.
-const loadFont = (family: string, url: string, weight: string) => {
+// Bundled fonts: no network needed to render or to open the page.
+const loadFont = (family: string, url: string, descriptors: FontFaceDescriptors) => {
   if (typeof FontFace === "undefined" || typeof document === "undefined") return;
   const handle = delayRender(`font ${family}`);
-  const face = new FontFace(family, `url(${url}) format("woff2")`, { weight });
+  const face = new FontFace(family, `url(${url}) format("woff2")`, descriptors);
   face
     .load()
     .then((f) => document.fonts.add(f))
     .catch((err) => console.warn(`Could not load ${family}`, err))
     .finally(() => continueRender(handle));
 };
-loadFont("IBM Plex Sans Variable", plexUrl, "100 700");
-loadFont("JetBrains Mono Variable", monoUrl, "100 800");
+loadFont("IBM Plex Sans Variable", plexSansUrl, { weight: "100 700" });
+loadFont("IBM Plex Serif", plexSerif400, { weight: "400" });
+loadFont("IBM Plex Serif", plexSerif400i, { weight: "400", style: "italic" });
+loadFont("IBM Plex Serif", plexSerif500, { weight: "500" });
+loadFont("JetBrains Mono Variable", monoUrl, { weight: "100 800" });
 
-export const FONT = `"IBM Plex Sans Variable", "Helvetica Neue", Arial, sans-serif`;
+export const SANS = `"IBM Plex Sans Variable", "Helvetica Neue", Arial, sans-serif`;
+export const SERIF = `"IBM Plex Serif", Georgia, "Times New Roman", serif`;
 export const MONO = `"JetBrains Mono Variable", ui-monospace, Menlo, monospace`;
 
+/** A white paper: cool white page, dark ink, one engineering blue, a signal red-orange for sound. */
 export const C = {
-  bg: "#05080b",
-  bg2: "#0a1116",
-  panel: "rgba(12, 22, 28, 0.78)",
-  line: "#17343c",
-  grid: "rgba(63, 224, 208, 0.055)",
-  cyan: "#3fe0d0",
-  teal: "#1aa39a",
-  orange: "#ff8a3d",
-  amber: "#ffc15e",
-  red: "#ff5d6c",
-  text: "#e6f0f1",
-  dim: "#86a3a8",
-  faint: "#46626a",
-  land: "#0d1b20",
-  landEdge: "#2a6b6f",
+  paper: "#fcfcfb",
+  tint: "#f2f4f5",
+  rule: "#c9d0d4",
+  grid: "#e4e8ea",
+  ink: "#17212b",
+  ink2: "#4b5864",
+  faint: "#8793a0",
+  blue: "#1f57a3",
+  blueTint: "#e3ecf7",
+  signal: "#c4471b",
+  signalTint: "#fae9e2",
+  ochre: "#8c6200",
+  ochreTint: "#f6eedb",
+  green: "#2c7a3a",
+  land: "#eceff1",
+  landEdge: "#6c7a86",
+  stone: "#ffffff",
+  stoneSide: "#dfe4e7",
+  stoneTop: "#f3f5f6",
 };
 
 export const W = 1920;
@@ -43,8 +55,8 @@ export const FPS = 30;
 
 export type Evidence = "DOCUMENTED" | "MEASURED" | "MODELLED" | "HYPOTHETICAL";
 export const EVIDENCE_COLOUR: Record<Evidence, string> = {
-  DOCUMENTED: C.cyan,
-  MEASURED: "#7ee07a",
-  MODELLED: C.amber,
-  HYPOTHETICAL: C.red,
+  DOCUMENTED: C.blue,
+  MEASURED: C.green,
+  MODELLED: C.ochre,
+  HYPOTHETICAL: C.signal,
 };

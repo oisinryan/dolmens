@@ -12,7 +12,7 @@ import { Player, PlayerRef } from "@remotion/player";
 import { SLIDES, TOTAL_FRAMES } from "../src/slides";
 import { Presentation } from "../src/Presentation";
 import { Controls, DEFAULTS, rangeKm } from "../src/controls";
-import { CLUSTER_LINKS, PULSE, messageFor, pulseTrain } from "../src/data";
+import { PULSE, clusterLinks, messageFor, pulseTrain } from "../src/data";
 import { FPS, H, W } from "../src/theme";
 
 type Mode = "slides" | "film";
@@ -81,7 +81,8 @@ const Slider: React.FC<{ id: string; label: string; unit: string; min: number; m
 
 const RangeControls: React.FC<{ c: Controls; set: (p: Partial<Controls>) => void; withCluster?: boolean }> = ({ c, set, withCluster }) => {
   const range = rangeKm(c.gainDb, c.refKm, c.absorption);
-  const connected = CLUSTER_LINKS.filter((x) => x.bottleneck <= range).length;
+  const links = clusterLinks(c.gullionRelays);
+  const connected = links.filter((x) => x.bottleneck <= range).length;
   return (
     <div className="group">
       <div className="readout">
@@ -93,13 +94,20 @@ const RangeControls: React.FC<{ c: Controls; set: (p: Partial<Controls>) => void
       <Slider id="gain" label="Receiver gain" unit=" dB" min={0} max={12} step={0.5} value={c.gainDb} onChange={(v) => set({ gainDb: v })} hint="What a passive collector adds at the listener. The report tests +3, +6, +9 and +12 dB." />
       <Slider id="absorption" label="Air absorption" unit=" dB/km" min={0} max={3} step={0.25} digits={2} value={c.absorption} onChange={(v) => set({ absorption: v })} hint="0 is the report's idealised model. At 250–500 Hz, air absorbs roughly 1–3 dB per km." />
       <Slider id="ref" label="Reference range, no gain" unit=" km" min={1} max={4} step={0.1} value={c.refKm} onChange={(v) => set({ refKm: v })} />
+      <div className="field">
+        <label className="check" htmlFor="relays">
+          <input id="relays" type="checkbox" checked={c.gullionRelays} onChange={(e) => set({ gullionRelays: e.target.checked })} />
+          Slieve Gullion relays
+        </label>
+        <p className="hint">Adds the summit passage tomb and the Long Stone, two surviving monuments near the cluster's centre. Its longest hop drops from 4.67 km to 2.92 km.</p>
+      </div>
       {withCluster && (
         <div className="field">
           <div className="field-head">
             <span className="label">Highlight cluster</span>
           </div>
           <div className="chips" role="group" aria-label="Highlight cluster">
-            {CLUSTER_LINKS.map((x) => (
+            {links.map((x) => (
               <button key={x.id} type="button" className={`chip ${x.id === c.cluster ? "on" : ""} ${x.bottleneck <= range ? "" : "out"}`} aria-pressed={x.id === c.cluster} onClick={() => set({ cluster: x.id })}>
                 {x.name}
                 <small>{x.bottleneck.toFixed(2)} km</small>
