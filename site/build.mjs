@@ -38,6 +38,31 @@ const NAV = [
   ["/presentation/", "Presentation"],
   ["/receiver/", "Receiver"],
 ];
+const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap">`;
+
+/**
+ * The running header, identical on every page. Its styles are self-contained (fixed sizes,
+ * no page variables) so the presentation and receiver pages, which have their own CSS,
+ * show exactly the same bar. The scrollbar's space is always reserved so nothing shifts.
+ */
+const BAR_CSS = `html{scrollbar-gutter:stable}
+.site-bar{position:sticky;top:0;z-index:50;background:#fcfcfb;border-bottom:1.5px solid #17212b;font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif}
+.site-bar.inset{margin-inline:-16px}
+.site-bar-in{box-sizing:border-box;max-width:1240px;height:52px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.site-brand{font:500 20px/1 "IBM Plex Serif",Georgia,"Times New Roman",serif;color:#17212b;text-decoration:none;white-space:nowrap}
+.site-brand span{color:#1f57a3}
+.site-nav{display:flex;gap:18px;font:600 12px/1 "IBM Plex Sans","Helvetica Neue",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.site-nav a{color:#4b5864;text-decoration:none;padding:6px 0 4px;border-bottom:2px solid transparent;white-space:nowrap}
+.site-nav a:hover,.site-nav a[aria-current="page"]{color:#1f57a3;border-bottom-color:#1f57a3}
+.site-nav a:focus-visible,.site-brand:focus-visible{outline:2px solid #1f57a3;outline-offset:2px}
+@media (max-width:760px){.site-bar-in{height:auto;padding:10px 16px;flex-direction:column;align-items:flex-start;gap:10px}.site-nav{gap:14px;overflow-x:auto;max-width:100%}.site-brand{font-size:18px}}`;
+const header = (path, inset = false) => `<header class="site-bar${inset ? " inset" : ""}"><div class="site-bar-in">
+  <a class="site-brand" href="/">Dolmens <span>·</span> Acoustic Signal Network</a>
+  <nav class="site-nav" aria-label="Site">${NAV.map(([href, label]) => `<a href="${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</nav>
+</div></header>`;
+
 const shell = ({ title, description, path, body }) => `<!doctype html>
 <html lang="en-IE">
 <head>
@@ -49,16 +74,12 @@ const shell = ({ title, description, path, body }) => `<!doctype html>
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="https://dolmens.tirnarogue.com/figures/plates/plate-1-title.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap">
+${FONTS}
 <link rel="stylesheet" href="/style.css">
+<style>${BAR_CSS}</style>
 </head>
 <body>
-<header class="bar"><div class="bar-in">
-  <a class="brand" href="/">Dolmens <span>·</span> Acoustic Signal Network</a>
-  <nav class="nav" aria-label="Site">${NAV.map(([href, label]) => `<a href="${href}"${href === path ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</nav>
-</div></header>
+${header(path)}
 ${body}
 <footer class="foot">
   <span>A speculative engineering model. Nothing here is established archaeology.</span>
@@ -126,12 +147,15 @@ write(
 );
 
 /* ---------------- the two interactive pages, with a way home ---------------- */
-const homeLink = `<div style="background:#17212b;padding:9px 16px;font:600 12px/1.2 'IBM Plex Sans',Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase"><a href="/" style="color:#fff;text-decoration:none">← Dolmens · Acoustic Signal Network</a></div>`;
-const withHome = (html) => html.replace(/<body>\n?/, (m) => `${m}${homeLink}\n`);
-write("presentation/index.html", withHome(read("presentation/web/index.html")));
+// both pages pad their body by 16px, so the bar pulls out by that much to span the width
+const withBar = (html, path) =>
+  html
+    .replace("</head>", `${FONTS}\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<style>${BAR_CSS}</style>\n</head>`)
+    .replace(/<body>\n?/, (m) => `${m}${header(path, true)}\n`);
+write("presentation/index.html", withBar(read("presentation/web/index.html"), "/presentation/"));
 write(
   "receiver/index.html",
-  withHome(read("restored-dolmen/index.html")).replace(
+  withBar(read("restored-dolmen/index.html"), "/receiver/").replace(
     "Model file: <code>restored-dolmen/dolmen-restored.glb</code> in the repository.",
     'Model file: <a href="dolmen-restored.glb" download>dolmen-restored.glb</a> (glTF, metres, one named part per component).',
   ),

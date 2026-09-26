@@ -18,22 +18,14 @@
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
 }
 * { box-sizing: border-box; }
-html { scroll-padding-top: 72px; }
+html { scroll-padding-top: 72px; scrollbar-gutter: stable; }
 body { margin: 0; background: var(--desk); color: var(--ink); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
 a { color: var(--blue); text-underline-offset: 3px; }
 a:hover { color: var(--ink); }
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 img { max-width: 100%; height: auto; display: block; }
 
-/* running header */
-.bar { position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 1.5px solid var(--ink); }
-.bar-in { max-width: 1240px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.brand { font: 500 20px/1 var(--serif); color: var(--ink); text-decoration: none; }
-.brand span { color: var(--blue); }
-.nav { display: flex; gap: 18px; flex-wrap: wrap; font: 600 12px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; }
-.nav a { color: var(--ink2); text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
-.nav a:hover, .nav a[aria-current="page"] { color: var(--blue); border-bottom-color: var(--blue); }
-
+/* the running header is in build.mjs (BAR_CSS), shared with the interactive pages */
 .page { max-width: 1240px; margin: 0 auto; padding: 24px 20px 48px; }
 .sheet { background: var(--paper); border: 1px solid var(--rule); padding: clamp(20px, 4vw, 48px); }
 .eyebrow { font: 600 12px/1.2 var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); }
