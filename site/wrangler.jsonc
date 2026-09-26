@@ -1,0 +1,15 @@
+// Cloudflare Workers static site for dolmens.tirnarogue.com. Only the generated
+// publish/ folder is uploaded; the rest of the repository stays private.
+{
+  "name": "dolmens",
+  // the same account as fianna.tirnarogue.com, so a cloud session needs only CLOUDFLARE_API_TOKEN
+  "account_id": "3e12e55375c4108230a4fda6088c75e7",
+  "compatibility_date": "2026-09-26",
+  "assets": {
+    "directory": "./publish",
+    "not_found_handling": "404-page"
+  },
+  // Cloudflare makes the DNS record and certificate for the custom domain
+  "routes": [{ "pattern": "dolmens.tirnarogue.com", "custom_domain": true }],
+  "workers_dev": true
+}
