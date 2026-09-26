@@ -1,0 +1,208 @@
+<title>Restored Dolmen Receiver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+  /* A printed engineering white paper: one light look on purpose, colours set explicitly. */
+  :root {
+    color-scheme: light;
+    --desk: #e8ebec;
+    --paper: #fcfcfb;
+    --tint: #f2f4f5;
+    --rule: #c9d0d4;
+    --grid: #e4e8ea;
+    --ink: #17212b;
+    --ink2: #4b5864;
+    --faint: #7c8894;
+    --blue: #1f57a3;
+    --blue-tint: #e3ecf7;
+    --signal: #c4471b;
+    --signal-tint: #fae9e2;
+    --ochre: #8c6200;
+    --green: #2c7a3a;
+    --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  body { margin: 0; background: var(--desk); color: var(--ink); font: 15px/1.5 var(--sans); padding-inline: 16px; -webkit-font-smoothing: antialiased; }
+  button, input { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .sheet { max-width: 1480px; margin: 0 auto; padding-block: 20px 36px; display: flex; flex-direction: column; gap: 18px; }
+
+  /* masthead */
+  .masthead { background: var(--paper); border: 1px solid var(--rule); padding: 22px 26px 18px; display: grid; gap: 16px; }
+  .eyebrow { font: 600 11px/1 var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); }
+  h1 { margin: 6px 0 0; font: 400 clamp(26px, 3.4vw, 40px)/1.1 var(--serif); letter-spacing: -0.01em; text-wrap: balance; }
+  .lede { margin: 8px 0 0; max-width: 72ch; color: var(--ink2); font: 400 16px/1.55 var(--serif); }
+  .kpis { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--rule); }
+  @media (max-width: 1100px) { .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .kpi { padding: 12px 14px 12px 0; display: flex; flex-direction: column; gap: 2px; }
+  .kpi + .kpi { padding-left: 14px; border-left: 1px solid var(--grid); }
+  .kpi .k { font: 600 11px/1.2 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink2); }
+  .kpi .v { font: 400 30px/1.1 var(--serif); font-variant-numeric: tabular-nums lining-nums; }
+  .kpi .v small { font: 400 15px var(--sans); color: var(--ink2); margin-left: 3px; }
+  .pill { align-self: flex-start; font: 600 11px/1 var(--sans); letter-spacing: 0.06em; padding: 4px 7px; border: 1.5px solid currentColor; }
+  .pill.ok { color: var(--green); }
+  .pill.bad { color: var(--signal); }
+
+  /* layout */
+  .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 18px; align-items: start; }
+  .card { background: var(--paper); border: 1px solid var(--rule); padding: 18px 20px; min-width: 0; }
+  .span-8 { grid-column: span 8; } .span-4 { grid-column: span 4; } .span-12 { grid-column: span 12; }
+  @media (max-width: 1100px) { .span-8, .span-4 { grid-column: span 12; } }
+  .card h2 { margin: 0; font: 400 21px/1.2 var(--serif); }
+  .card .sub { margin: 4px 0 14px; color: var(--ink2); font-size: 13.5px; max-width: 65ch; }
+  .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-bottom: 10px; border-bottom: 1px solid var(--grid); margin-bottom: 14px; }
+  .caption { font-size: 13px; color: var(--ink2); margin-top: 10px; }
+  .caption b { color: var(--ink); }
+
+  /* viewport */
+  .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+  .seg { display: inline-flex; border: 1px solid var(--rule); }
+  .seg button { background: var(--paper); border: 0; padding: 7px 12px; font: 600 12px/1 var(--sans); letter-spacing: 0.04em; color: var(--ink2); }
+  .seg button + button { border-left: 1px solid var(--rule); }
+  .seg button[aria-pressed="true"] { background: var(--blue); color: #fff; }
+  .btn { background: var(--paper); border: 1px solid var(--rule); padding: 7px 12px; font: 600 12px/1 var(--sans); letter-spacing: 0.04em; }
+  .btn:hover { border-color: var(--blue); color: var(--blue); }
+  .btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn.primary:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .stage-label { font: 400 15px/1.3 var(--serif); color: var(--ink); min-width: 0; flex: 1; }
+  .stage-label .n { font: 500 12px var(--mono); color: var(--blue); margin-right: 6px; }
+  .viewport { position: relative; width: 100%; height: clamp(340px, 56vh, 620px); background: #f3f5f2; border: 1px solid var(--grid); overflow: hidden; touch-action: none; }
+  .viewport canvas { display: block; }
+  .tag3d { font: 600 12px/1.2 var(--sans); color: var(--ink); background: rgba(252, 252, 251, 0.92); border: 1px solid var(--blue); padding: 4px 8px; white-space: nowrap; pointer-events: none; }
+  .tag3d.soft { border-color: var(--rule); color: var(--ink2); font-weight: 500; }
+  .scrub { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+  .scrub input { flex: 1; }
+  .hint { font-size: 12.5px; color: var(--faint); }
+
+  /* controls */
+  .field { display: grid; gap: 4px; margin-bottom: 12px; }
+  .field-head { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; }
+  output { font: 500 13px/1 var(--mono); color: var(--blue); font-variant-numeric: tabular-nums; }
+  input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; background: transparent; margin: 0; }
+  input[type="range"]::-webkit-slider-runnable-track { height: 4px; background: linear-gradient(90deg, var(--blue) var(--fill, 50%), var(--rule) var(--fill, 50%)); }
+  input[type="range"]::-moz-range-track { height: 4px; background: linear-gradient(90deg, var(--blue) var(--fill, 50%), var(--rule) var(--fill, 50%)); }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -6px; border-radius: 50%; background: var(--paper); border: 2px solid var(--blue); }
+  input[type="range"]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--paper); border: 2px solid var(--blue); }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip { background: var(--paper); border: 1px solid var(--rule); padding: 5px 9px; font: 500 12px/1 var(--mono); }
+  .chip[aria-pressed="true"] { background: var(--blue-tint); border-color: var(--blue); color: var(--blue); }
+  svg { display: block; max-width: 100%; height: auto; }
+  svg text { font-family: var(--sans); }
+  .chart-title { display: flex; justify-content: space-between; align-items: baseline; margin: 14px 0 6px; font-size: 13px; color: var(--ink2); }
+  .chart-title b { font-weight: 600; color: var(--ink); }
+  .readout { font: 400 22px/1.1 var(--serif); font-variant-numeric: tabular-nums lining-nums; }
+
+  /* materials */
+  .materials { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+  .mat { text-align: left; background: var(--paper); border: 1px solid var(--rule); padding: 12px 14px; display: grid; gap: 5px; align-content: start; }
+  .mat:hover { border-color: var(--blue); }
+  .mat[aria-pressed="true"] { border-color: var(--blue); background: var(--blue-tint); box-shadow: inset 3px 0 0 var(--blue); }
+  .mat .name { font: 500 16px/1.25 var(--serif); }
+  .mat .what { font-size: 13.5px; color: var(--ink); }
+  .mat .src { font-size: 12.5px; color: var(--ink2); }
+  .mat .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 2px; }
+  .mat .qty { font: 500 12px/1.3 var(--mono); color: var(--ink2); }
+  .ev { font: 600 10.5px/1 var(--sans); letter-spacing: 0.1em; padding: 3px 6px; border: 1.5px solid currentColor; white-space: nowrap; }
+  .ev.DOCUMENTED { color: var(--blue); } .ev.HYPOTHETICAL { color: var(--signal); }
+
+  .notes { font-size: 13px; color: var(--ink2); display: grid; gap: 6px; }
+  .notes p { margin: 0; max-width: 110ch; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+
+<div class="sheet">
+  <header class="masthead">
+    <div>
+      <div class="eyebrow">Restoration study · Neolithic acoustic signal network</div>
+      <h1>A restored portal tomb tuned for +6 dB</h1>
+      <p class="lede">A fully restored dolmen, with its cairn, and a passive collector built from materials of the period, sized to give at least 6 dB of receiver gain across the 250–500 Hz signalling band.</p>
+    </div>
+    <div class="kpis" id="kpis"></div>
+  </header>
+
+  <div class="grid">
+    <section class="card span-8" aria-label="3D model">
+      <div class="card-head">
+        <h2>Figure 1 · The restored tomb and its collector</h2>
+        <span class="hint">Drag to orbit · scroll or pinch to zoom</span>
+      </div>
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="View">
+          <button type="button" data-view="restored" aria-pressed="true">Restored</button>
+          <button type="button" data-view="cutaway" aria-pressed="false">Cutaway</button>
+          <button type="button" data-view="exploded" aria-pressed="false">Exploded</button>
+        </div>
+        <button type="button" class="btn primary" id="play">▶ Build it</button>
+        <button type="button" class="btn" id="sound" aria-pressed="true">Sound on</button>
+        <div class="stage-label" id="stage-label" aria-live="polite"></div>
+      </div>
+      <div class="viewport" id="viewport"></div>
+      <div class="scrub">
+        <label for="build" class="hint">Build sequence</label>
+        <input id="build" type="range" min="0" max="9" step="0.01" value="9">
+      </div>
+      <p class="caption"><b>Figure 1.</b> Restored portal tomb in a long cairn, portal facing the sender. The portal gap is packed with dry stone except for a 0.3 m throat, where the collector, a hide-skinned cone on hazel staves and ash hoops, is seated on two trestles. The listener sits inside with the ear on the collector's axis, 1.15 m up.</p>
+    </section>
+
+    <aside class="card span-4" aria-label="Collector design">
+      <div class="card-head"><h2>Collector design</h2><span class="hint" id="shape-note"></span></div>
+      <div class="field">
+        <div class="field-head"><label for="mouth">Mouth diameter</label><output id="mouth-out"></output></div>
+        <input id="mouth" type="range" min="0.8" max="2.0" step="0.05">
+      </div>
+      <div class="field">
+        <div class="field-head"><label for="length">Length, throat to mouth</label><output id="length-out"></output></div>
+        <input id="length" type="range" min="1.0" max="3.0" step="0.05">
+      </div>
+      <div class="field">
+        <div class="field-head"><label for="eta">Aperture efficiency</label><output id="eta-out"></output></div>
+        <input id="eta" type="range" min="0.3" max="0.8" step="0.05">
+      </div>
+      <button type="button" class="btn" id="reset">Back to the design point</button>
+      <div class="chart-title"><span><b>Figure 2.</b> Gain against frequency</span><span id="gain-note"></span></div>
+      <svg id="gain-chart" viewBox="0 0 380 210" role="img" aria-label="Collector gain against frequency"></svg>
+      <div class="chart-title"><span><b>Figure 3.</b> Directional pattern</span><span class="chips" id="freq-chips" role="group" aria-label="Frequency"></span></div>
+      <svg id="polar" viewBox="0 0 380 210" role="img" aria-label="Directional pattern of the collector"></svg>
+    </aside>
+
+    <section class="card span-4" aria-label="Relay range">
+      <div class="card-head"><h2>Relay range</h2><span class="readout" id="range-out"></span></div>
+      <p class="sub">The collector's weakest gain in the band sets the range. Bars are each cluster's longest required hop.</p>
+      <svg id="range-chart" viewBox="0 0 380 230" role="img" aria-label="Relay range against cluster hops"></svg>
+      <p class="caption"><b>Figure 4.</b> Range = 2.3 km × 10<sup>G/20</sup>, spreading only. Air absorption and terrain reduce it; see the report's range model.</p>
+    </section>
+
+    <section class="card span-4" aria-label="Chamber reverberation">
+      <div class="card-head"><h2>Chamber lining</h2><span class="readout" id="rt-out"></span></div>
+      <p class="sub">Bare stone rings for seconds and smears the pulses together. Soft lining shortens the ring.</p>
+      <div class="field">
+        <div class="field-head"><label for="lining">Lining: bracken, fleece and hide</label><output id="lining-out"></output></div>
+        <input id="lining" type="range" min="0" max="16" step="0.5">
+      </div>
+      <canvas id="pulses" width="760" height="300" style="width:100%;height:auto;display:block;border:1px solid var(--grid)"></canvas>
+      <p class="caption"><b>Figure 5.</b> “Danger” (one low pulse, three high) as heard in the chamber, with the reverberant tail. <span id="smear-note"></span></p>
+    </section>
+
+    <section class="card span-4" aria-label="Chamber and collector facts">
+      <div class="card-head"><h2>Specification</h2></div>
+      <div id="spec"></div>
+    </section>
+
+    <section class="card span-12" aria-label="Materials">
+      <div class="card-head">
+        <h2>Materials of the period</h2>
+        <span class="hint">Select a material to find it in the model</span>
+      </div>
+      <div class="materials" id="materials"></div>
+    </section>
+
+    <section class="card span-12 notes" aria-label="Assumptions">
+      <p><b>Gain.</b> The collector's gain is its directivity, η·4πA/λ², reduced by the curved wavefront at a cone's mouth (sinc²(δ/λ), δ the rim path excess). That is the signal-to-noise gain against diffuse background noise such as wind in vegetation. Any extra pressure gain at the throat, and the quiet of a cairn-covered chamber, would add to it but are not counted.</p>
+      <p><b>Status.</b> A design study for the report's hypothesis. No collector of this kind is known from the archaeology; the stones, cairn and materials are of the period, the acoustic use is not established. Model file: <code>restored-dolmen/dolmen-restored.glb</code> in the repository.</p>
+    </section>
+  </div>
+</div>
