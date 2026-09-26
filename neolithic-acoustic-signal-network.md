@@ -424,6 +424,8 @@ A high-tech Remotion presentation concept has been designed around the following
 8. **Test Plan & Conclusion**  
    GIS, acoustic modelling, field tests and falsification.
 
+Static white-paper versions of these eight slides are in Appendix A.
+
 ### Visual system
 
 - 16:9
@@ -483,6 +485,66 @@ The current model therefore remains:
 - Slieve Gullion passage tomb and the Ring of Gullion monuments:  
   https://ringofgullion.org/landscape-heritage/built-heritage/
 - Lady Gregory, *Gods and Fighting Men* (Project Gutenberg #14465), Part II Book 4, Chapter XV, "The Hunt of Slieve Cuilinn".
+
+---
+
+## Appendix A. Figure plates
+
+These eight plates redraw, in the report's white-paper style, the slide images ChatGPT generated from its presentation prompts (listed as "Slide image" 1–8 and 10 in [`chatgpt/analysis-code.md`](chatgpt/analysis-code.md); image 9 and 10 were corrections to slide 5). They follow each prompt's content, with these changes:
+
+- **Numbers follow this report.** The carrier is 250–500 Hz, switched at 0.5–2 Hz (the prompt said "~0.5–5 Hz"); relay hops are about 1–5 km (the prompt said "~2–7 km").
+- **Local cells, not an island-wide network.** Plate 1 marks local acoustic cells instead of arcs linking clusters across the island.
+- **Line drawings instead of photographs and slogans.** The prompts' landscape photographs and taglines ("Landscapes resonate") are left out.
+
+The plates are rendered from `presentation/src/plates/` with `npm run plates` and saved in `figures/plates/`.
+
+### Plate 1. Neolithic Acoustic Signal Network
+
+![Plate 1: Neolithic Acoustic Signal Network](figures/plates/plate-1-title.png)
+
+Overview: the hypothesis, the carrier concept and the test method, with the five study clusters over the county totals, a model horn signal, and a sightline section showing sound bending over a ridge that blocks the line of sight.
+
+### Plate 2. All-Island Portal Tomb Model
+
+![Plate 2: All-Island Portal Tomb Model](figures/plates/plate-2-inventory.png)
+
+The 207-location working inventory (155 Republic, 52 Northern Ireland), the seven densest counties holding 114 of 207 (~55%), and the ranked county counts showing clustering rather than an even spread.
+
+### Plate 3. Signalling Principle
+
+![Plate 3: Signalling Principle](figures/plates/plate-3-signalling.png)
+
+The signal chain in section: horn transmitter, 250–500 Hz wavefronts over terrain, passive listening horn, resonant stone chamber and listener, with a pulse-burst inset.
+
+### Plate 4. Range Model
+
+![Plate 4: Range Model](figures/plates/plate-4-range.png)
+
+The benchmark ranges from §5 (2.30, 3.25, 4.59, 6.48 and 9.16 km at 0 to +12 dB) against Slieve Gullion's 4.67 km hop, with the formula and the 2.3 km baseline.
+
+### Plate 5. Cluster Connectivity
+
+![Plate 5: Cluster Connectivity](figures/plates/plate-5-clusters.png)
+
+Minimum-spanning-tree diagrams for the five clusters from their tomb coordinates, the largest hop in each (0.915, 0.979, 1.825, 2.622 and 4.671 km), and a comparison bar chart.
+
+### Plate 6. Exploded Model
+
+![Plate 6: Exploded Model](figures/plates/plate-6-exploded.png)
+
+Exploded axonometric of the conceptual receiving station (§6), with the sending horn, the path of sound energy and four functional notes.
+
+### Plate 7. Pulse Code System
+
+![Plate 7: Pulse Code System](figures/plates/plate-7-pulse-code.png)
+
+The two-stage code (§8), the 4 × 5 table of message states, and four example sequences drawn to time scale.
+
+### Plate 8. Test Plan and Conclusion
+
+![Plate 8: Test Plan and Conclusion](figures/plates/plate-8-test-plan.png)
+
+The five-step roadmap (§11–13), the conclusions, and the best current reading: local acoustic cells are more plausible than a single Ireland-wide network.
 
 ---
 

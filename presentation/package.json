@@ -30,7 +30,8 @@
     "render": "remotion render Presentation out/presentation.mp4",
     "coastline": "node tools/coastline.mjs",
     "build-web": "node tools/build-web.mjs",
-    "lint": "eslint src web/app.tsx && tsc"
+    "lint": "eslint src web/app.tsx && tsc",
+    "plates": "node tools/render-plates.mjs"
   },
   "sideEffects": [
     "*.css"

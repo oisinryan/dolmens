@@ -20,9 +20,11 @@ npm ci
 npm run dev         # Remotion Studio: every slide and the full "Presentation"
 npm run build-web   # rebuild web/index.html after changing src/ or web/
 npm run render      # out/presentation.mp4
+npm run plates      # ../figures/plates/*.png, the eight white-paper plates (report Appendix A)
 npm run lint        # eslint and tsc
 ```
 
+- `src/plates/`: the eight static figure plates, redrawn from ChatGPT's slide-image prompts.
 - `src/slides/`: one component per slide. `src/slides.ts` lists them with their durations, loop points and speaker notes.
 - `src/controls.ts`: the settings the page can change, and the range model (spreading plus optional air absorption).
 - `src/data.ts`: county counts, cluster sites and the pulse code.
