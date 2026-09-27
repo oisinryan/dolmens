@@ -173,7 +173,7 @@ For engineering tests, receiver improvement should be evaluated conservatively a
 - +9 dB
 - +12 dB
 
-Using an experimental reference distance of **2.3 km**, the idealised range scaling is:
+Using an experimental reference distance of **2.3 km** (consistent with measured Neolithic shell trumpets; see §17.1), the idealised range scaling is:
 
 ```text
 r₂ = r₁ × 10^(G/20)
@@ -468,7 +468,35 @@ The current model therefore remains:
 
 **physically plausible in local clusters, archaeologically unproven, and experimentally testable.**
 
-## 17. Reference starting points
+## 17. World parallels
+
+No monument anywhere is known to have worked as an acoustic relay station, with or without a listening collector. Each part of the proposed system does have a real precedent, and together they show which parts are well supported and which are not.
+
+| Part of the system | Best parallel | What it shows | Gap to this model |
+|---|---|---|---|
+| Loud horn transmitter | Neolithic conch trumpets, Catalonia, late 5th–early 4th millennium BC | Seven of eight playable *Charonia* trumpets peak above 100 dBA at 1 m, up to 111.5 dBA; the authors suggest signalling "beyond visual range, and perhaps over several kilometres" | Measured in Iberia, not Ireland; no range was tested in the field |
+| Monument built around trumpets | Chavín de Huántar, Peru, c. 1200–500 BC | Twenty decorated conch trumpets found in the galleries (2001); narrowing passages act as waveguides carrying trumpet sound from inside to outside | Ritual sound within one site, not a link between sites |
+| Relay of messages by sound | Talking drums of the Congo (lokole) | One drum carries about 4–5 miles by day and 6–7 miles in the cool of morning and evening; relayed from village to village, a message could cover about 100 miles in an hour | Recorded in the 20th century; portable drums, not monuments |
+| Coded signals over kilometres | Silbo Gomero, whistled language, Canary Islands | Messages across ravines up to about 5 km, 8 km in good conditions | Recent; a whistled language, not a pulse code |
+| Passive collector giving range | British concrete sound mirrors, 1920s–30s (Denge and elsewhere) | Focusing sound on a listening point detected aircraft at about 20 miles (32 km), more for the largest | Modern engineering; nothing comparable is known from prehistory |
+| Chamber resonance | Ħal Saflieni Hypogeum, Malta; Newgrange; Stonehenge (scale model) | Neolithic chambers resonate near 70–120 Hz; Stonehenge's circle gave about 0.6 s of reverberation, helping voices and drums inside it | Effects are for people inside the monument, not for sound sent or received from far away |
+| Horns in Ireland | Irish Bronze Age horns (over 120, 26 in the Dowris hoard) | Ireland holds more than half the Bronze Age horns known from Europe and the Middle East | About 2,000 years after the portal tombs; signalling versus ceremony is debated |
+
+### 17.1 What the parallels change in this model
+
+**The transmitter is the best-supported part.** The Catalan measurements give the report's baseline a source. Under the spreading-only model of §5 with a 40 dB detection level, 100–111.5 dBA at 1 m gives an unaided range of 1.0–3.8 km. The 2.3 km reference used throughout this report sits inside that span; it corresponds to a horn of about 107 dBA. With +6 dB of receiver gain the same horns reach 2.0–7.5 km, before air absorption and terrain.
+
+**Acoustic relays of this hop length are proven.** The Congo drum networks relayed messages in hops of several kilometres, the same scale as the Irish clusters' 0.9–4.7 km. They did it with portable instruments and people, which is the null case for this model: relays need no special architecture.
+
+**The monument as receiver is the unsupported step.** The collector idea is sound in physics (the sound mirrors), and chambers do have acoustic character (Malta, Newgrange, Stonehenge), but every known effect is for listeners inside a monument. Chavín is the only site demonstrably shaped around trumpets, and its sound stayed within the complex.
+
+**Where prehistoric and early historic societies built fixed relay chains, they were visual:** fire beacons on high points. A summit such as Slieve Gullion (§3.1) suits a beacon at least as well as a horn.
+
+### 17.2 In Irish tradition
+
+Lady Gregory's *Gods and Fighting Men* gives Finn a signalling horn, the Dord Fiann, "the Mutterer of the Fianna". Its blast brings Diarmuid to Finn's rescue, the scattered Fianna "answered with a shout, every one hurrying to be the first", and fifty men sound it. The Fianna are said to sleep in a cave until it is sounded three times. This is legend, not evidence, but it shows how naturally the stories imagine a horn calling people across country.
+
+## 18. Reference starting points
 
 - National Monuments Service / Archaeological Survey of Ireland:  
   https://data.gov.ie/dataset/national-monuments-service-archaeological-survey-of-ireland
@@ -485,6 +513,22 @@ The current model therefore remains:
 - Slieve Gullion passage tomb and the Ring of Gullion monuments:  
   https://ringofgullion.org/landscape-heritage/built-heritage/
 - Lady Gregory, *Gods and Fighting Men* (Project Gutenberg #14465), Part II Book 4, Chapter XV, "The Hunt of Slieve Cuilinn".
+- López-Garcia, M. and Díaz-Andreu, M. 2025. Signalling and music-making: interpreting the Neolithic shell trumpets of Catalonia (Spain). *Antiquity*:  
+  https://doi.org/10.15184/aqy.2025.10220
+- Chavín de Huántar Archaeological Acoustics Project, Stanford CCRMA:  
+  https://ccrma.stanford.edu/groups/chavin/
+- Carrington, J. F. 1949. *The Talking Drums of Africa*:  
+  https://missiology.org.uk/pdf/e-books/carrington_j-f/talking-drums-of-africa_carrington.pdf
+- Silbo Gomero:  
+  https://en.wikipedia.org/wiki/Silbo_Gomero
+- Denge sound mirrors:  
+  https://en.wikipedia.org/wiki/RAF_Denge
+- Archaeoacoustic analysis of the Ħal Saflieni Hypogeum, Malta:  
+  https://www.um.edu.mt/library/oar/bitstream/123456789/16630/1/OA%20Archaeoacoustic%20Analysis%20of%20the%20%C4%A6al%20Saflieni%20Hypogeum%20in%20Malta.pdf
+- Fazenda, B., Cox, T. et al. 2020. Using scale modelling to assess the prehistoric acoustics of Stonehenge. *Journal of Archaeological Science*:  
+  https://www.sciencedirect.com/science/article/pii/S0305440320301394
+- Irish Bronze Age horns and their relations with Northern Europe, *Proceedings of the Prehistoric Society*:  
+  https://www.cambridge.org/core/journals/proceedings-of-the-prehistoric-society/article/abs/irish-bronze-age-horns-and-their-relations-with-northern-europe/FCE3CC56CE3FC20F51EC3A0E7D9C940B
 
 ---
 

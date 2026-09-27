@@ -187,7 +187,7 @@ write(
   </div>
 </section>
 <div class="parts">
-${part("The report", "/report/", "plate-1-title.png", "Engineering concept report", "The inventory, cluster spacing, range model, receiving station, resonance, pulse code, Slieve Gullion's summit relays, and the falsification tests.", "Read the report")}
+${part("The report", "/report/", "plate-1-title.png", "Engineering concept report", "The inventory, cluster spacing, range model, receiving station, resonance, pulse code, Slieve Gullion's summit relays, parallels from around the world, and the falsification tests.", "Read the report")}
 ${part("Interactive", "/presentation/", "plate-4-range.png", "Presentation", "Eight slides with live controls: receiver gain and air absorption, the Slieve Gullion relays, an exploded tomb, and a pulse code you can play.", "Open the presentation")}
 ${part("3D model", "/receiver/", "plate-6-exploded.png", "Restored dolmen receiver", "A fully restored portal tomb in its cairn with a collector sized for at least +6 dB across 250–500 Hz, built from materials of the period.", "Explore the model")}
 ${part("Appendix A", "/plates/", "plate-5-clusters.png", "Figure plates", "Eight plates that summarise the concept, from the all-island inventory to the test plan.", "See the plates")}
