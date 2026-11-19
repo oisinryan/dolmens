@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+acoustics/*.npz
+acoustics/fdtd_summary.json
+.DS_Store

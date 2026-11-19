@@ -37,6 +37,7 @@ const NAV = [
   ["/plates/", "Plates"],
   ["/presentation/", "Presentation"],
   ["/receiver/", "Receiver"],
+  ["/newgrange/", "Newgrange"],
 ];
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -146,12 +147,12 @@ write(
   }),
 );
 
-/* ---------------- the two interactive pages, with a way home ---------------- */
-// both pages pad their body by 16px, so the bar pulls out by that much to span the width
-const withBar = (html, path) =>
+/* ---------------- the interactive pages, with a way home ---------------- */
+// presentation and receiver pad their body by 16px, so the bar pulls out by that much to span the width
+const withBar = (html, path, inset = true) =>
   html
     .replace("</head>", `${FONTS}\n<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<style>${BAR_CSS}</style>\n</head>`)
-    .replace(/<body>\n?/, (m) => `${m}${header(path, true)}\n`);
+    .replace(/<body>\n?/, (m) => `${m}${header(path, inset)}\n`);
 write("presentation/index.html", withBar(read("presentation/web/index.html"), "/presentation/"));
 write(
   "receiver/index.html",
@@ -162,8 +163,36 @@ write(
 );
 copy("restored-dolmen/dolmen-restored.glb", "receiver/dolmen-restored.glb");
 
+/* ---------------- newgrange 3D acoustic model ---------------- */
+write(
+  "newgrange/index.html",
+  withBar(read("newgrange/viewer/index.html"), "/newgrange/", false)
+    .replaceAll("../models/", "models/")
+    .replaceAll("../acoustics/", "acoustics/"),
+);
+copy("newgrange/viewer/styles.css", "newgrange/styles.css");
+copy("newgrange/viewer/webgl_engine.js", "newgrange/webgl_engine.js");
+copy("newgrange/viewer/audio_engine.js", "newgrange/audio_engine.js");
+write(
+  "newgrange/app.js",
+  read("newgrange/viewer/app.js").replaceAll("../acoustics/", "acoustics/"),
+);
+for (const f of readdirSync(new URL("newgrange/viewer/data/", repo))) {
+  copy(`newgrange/viewer/data/${f}`, `newgrange/data/${f}`);
+}
+for (const f of readdirSync(new URL("newgrange/models/", repo))) {
+  copy(`newgrange/models/${f}`, `newgrange/models/${f}`);
+}
+for (const f of readdirSync(new URL("newgrange/acoustics/", repo))) {
+  if (f === "plots") continue;
+  copy(`newgrange/acoustics/${f}`, `newgrange/acoustics/${f}`);
+}
+for (const f of readdirSync(new URL("newgrange/acoustics/plots/", repo))) {
+  copy(`newgrange/acoustics/plots/${f}`, `newgrange/acoustics/plots/${f}`);
+}
+
 /* ---------------- home ---------------- */
-const part = (n, href, img, title, text, go) => `<a class="part" href="${href}"><img src="/figures/plates/${img}" alt="" width="1920" height="1080" loading="lazy">
+const part = (n, href, img, title, text, go) => `<a class="part" href="${href}"><img src="${img.startsWith("/") ? img : `/figures/plates/${img}`}" alt="" width="1920" height="1080" loading="lazy">
 <div class="body"><span class="n">${n}</span><h2>${title}</h2><p>${text}</p><span class="go">${go} →</span></div></a>`;
 write(
   "index.html",
@@ -190,6 +219,7 @@ write(
 ${part("The report", "/report/", "plate-1-title.png", "Engineering concept report", "The inventory, cluster spacing, range model, receiving station, resonance, pulse code, Slieve Gullion's summit relays, parallels from around the world, and the falsification tests.", "Read the report")}
 ${part("Interactive", "/presentation/", "plate-4-range.png", "Presentation", "Eight slides with live controls: receiver gain and air absorption, the Slieve Gullion relays, an exploded tomb, and a pulse code you can play.", "Open the presentation")}
 ${part("3D model", "/receiver/", "plate-6-exploded.png", "Restored dolmen receiver", "A fully restored portal tomb in its cairn with a collector sized for at least +6 dB across 250–500 Hz, built from materials of the period.", "Explore the model")}
+${part("3D acoustic model", "/newgrange/", "/newgrange/acoustics/plots/newgrange_plan_section.png", "Newgrange passage tomb", "Watertight O'Kelly geometry (18.95 m passage, 6.0 m corbelled vault) solved with 3D FDTD (105.4 Hz peak) and ray-tracing, with interactive WebGL2 cutaway and Web Audio auralization.", "Explore Newgrange")}
 ${part("Appendix A", "/plates/", "plate-5-clusters.png", "Figure plates", "Eight plates that summarise the concept, from the all-island inventory to the test plan.", "See the plates")}
 </div>
 <div class="verdict">
@@ -211,4 +241,4 @@ write(
   "404.html",
   shell({ title: "Not found · Neolithic Acoustic Signal Network", description: "Page not found.", path: "", body: `<main class="page"><div class="sheet hero"><div class="eyebrow">404</div><h1 style="font-size:48px">Nothing here</h1><p class="lede"><a href="/">Back to the start</a>.</p></div></main>` }),
 );
-console.log(`publish/: home, report (${toc.length} sections), ${plates.length} plates, presentation, receiver`);
+console.log(`publish/: home, report (${toc.length} sections), ${plates.length} plates, presentation, receiver, newgrange`);

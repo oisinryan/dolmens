@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark light">
+  <title>Newgrange Acoustic 3D Model | Archaeoacoustic Observatory</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#viewport-stage" class="skip-link visually-hidden">Skip to 3D Viewport</a>
+
+  <header class="topbar">
+    <div class="brand">
+      <h1>Newgrange Acoustic 3D Model</h1>
+      <p class="subtitle">Brú na Bóinne (c. 3200 BCE) &bull; O'Kelly Geometry &bull; 3D FDTD + Ray-Trace</p>
+    </div>
+    <nav class="downloads-nav" aria-label="Download 3D Models and Impulse Responses">
+      <a class="dl-pill" href="../models/newgrange_monument.glb" download>Monument (.glb)</a>
+      <a class="dl-pill" href="../models/newgrange_acoustic_interior.stl" download>Acoustic Cavity (.stl)</a>
+      <a class="dl-pill" href="../models/newgrange_monument.obj" download>Mesh (.obj)</a>
+      <a class="dl-pill" id="dl-active-ir" href="../acoustics/ir_chamber_center.wav" download>Active IR (.wav)</a>
+    </nav>
+  </header>
+
+  <div class="studio-shell">
+    <main id="viewport-stage" class="viewport-stage" tabindex="-1">
+      <canvas id="gl-canvas" aria-label="Interactive 3D architectural and acoustic cutaway model of Newgrange passage tomb"></canvas>
+
+      <div class="viewport-hud" aria-label="Camera and Display Quick Bar">
+        <div class="hud-group" role="group" aria-label="Camera Presets">
+          <button type="button" class="hud-btn active" data-cam="cutaway" aria-pressed="true">Cutaway</button>
+          <button type="button" class="hud-btn" data-cam="chamber" aria-pressed="false">Chamber</button>
+          <button type="button" class="hud-btn" data-cam="vault" aria-pressed="false">Corbel Vault</button>
+          <button type="button" class="hud-btn" data-cam="passage" aria-pressed="false">Passage &amp; Roof-Box</button>
+          <button type="button" class="hud-btn" data-cam="exterior" aria-pressed="false">85m Mound</button>
+        </div>
+        <p class="hud-hint">
+          Drag: Orbit &bull; Scroll: Zoom &bull; Right-drag: Pan &bull; Keys <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / Arrows: Walk
+        </p>
+      </div>
+
+      <div class="hud-telemetry" id="hud-metrics">
+        <span class="metric-chip"><strong>Primary Mode:</strong> <span id="chip-peak-hz">105.4 Hz</span></span>
+        <span class="metric-chip"><strong>Chamber T<sub>60</sub> (1 kHz):</strong> <span id="chip-rt60">-- s</span></span>
+        <span class="metric-chip"><strong>Enclosed Volume:</strong> <span id="chip-vol">108.1 m&sup3;</span></span>
+        <span class="metric-chip"><strong>Solstice Hit:</strong> <span>y = 20.6 m (1.0&deg;)</span></span>
+      </div>
+
+      <div id="live-announcer" class="visually-hidden" aria-live="polite"></div>
+    </main>
+
+    <aside class="inspector" aria-label="Model and Acoustic Controls">
+      <section class="panel-card">
+        <h2>3D Layers &amp; Cutaway</h2>
+        <div class="control-row">
+          <label for="clip-axis">Section Plane</label>
+          <select id="clip-axis">
+            <option value="0" selected>Longitudinal X-Cut (Reveal Passage &amp; Chamber)</option>
+            <option value="1">Transverse Y-Cut (Slice Along Passage)</option>
+            <option value="2">Horizontal Z-Cut (Cruciform Plan)</option>
+            <option value="-1">Full Monument (No Section Cut)</option>
+          </select>
+        </div>
+        <div class="control-row">
+          <label for="clip-pos">Section Offset: <output id="clip-pos-out" for="clip-pos">0.15 m</output></label>
+          <input type="range" id="clip-pos" min="-3.8" max="4.0" step="0.05" value="0.15">
+        </div>
+        <div class="checkbox-grid">
+          <label for="chk-mound-west">
+            <input type="checkbox" id="chk-mound-west" checked>
+            <span>West Cairn Mound</span>
+          </label>
+          <label for="chk-mound-east">
+            <input type="checkbox" id="chk-mound-east">
+            <span>East Cairn Mound</span>
+          </label>
+          <label for="chk-quartz">
+            <input type="checkbox" id="chk-quartz" checked>
+            <span>Quartz &amp; Kerbstones</span>
+          </label>
+          <label for="chk-solstice">
+            <input type="checkbox" id="chk-solstice" checked>
+            <span>Winter Solstice Beam</span>
+          </label>
+          <label for="chk-rays">
+            <input type="checkbox" id="chk-rays" checked>
+            <span>3D Acoustic Rays</span>
+          </label>
+          <label for="chk-cavity">
+            <input type="checkbox" id="chk-cavity">
+            <span>Watertight Cavity Wire</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel-card">
+        <h2>3D Standing-Wave Eigenmodes</h2>
+        <div class="control-row">
+          <label for="chk-eigenmode">
+            <input type="checkbox" id="chk-eigenmode" checked>
+            <span>Show 3D Pressure Field Slice</span>
+          </label>
+        </div>
+        <div class="control-row">
+          <label for="mode-select">Resonant Mode (20&ndash;280 Hz FDTD)</label>
+          <select id="mode-select"></select>
+        </div>
+        <div class="control-row">
+          <label for="slice-z">Field Slice Z: <output id="slice-z-out" for="slice-z">2.70 m</output></label>
+          <input type="range" id="slice-z" min="0.4" max="7.8" step="0.05" value="2.70">
+        </div>
+        <div class="control-row">
+          <label for="slice-y">Longitudinal Slice X: <output id="slice-y-out" for="slice-y">0.00 m</output></label>
+          <input type="range" id="slice-y" min="-3.2" max="3.6" step="0.05" value="0.00">
+        </div>
+        <canvas id="frf-canvas" width="360" height="150" role="img" aria-label="Interactive FDTD low-frequency response plot from 16 to 340 Hz; click a peak to select mode"></canvas>
+      </section>
+
+      <section class="panel-card">
+        <h2>Web Audio Auralization (48 kHz)</h2>
+        <div class="control-row">
+          <label for="station-select">Acoustic Station (IR)</label>
+          <select id="station-select"></select>
+        </div>
+        <p id="station-desc" class="muted-note"></p>
+        <div class="slider-pair">
+          <div class="control-row">
+            <label for="wet-mix">Reverb Wet Mix: <output id="wet-mix-out" for="wet-mix">85%</output></label>
+            <input type="range" id="wet-mix" min="0" max="100" step="1" value="85">
+          </div>
+          <div class="control-row">
+            <label for="master-vol">Master Gain: <output id="master-vol-out" for="master-vol">70%</output></label>
+            <input type="range" id="master-vol" min="0" max="100" step="1" value="70">
+          </div>
+        </div>
+        <div class="control-row">
+          <label for="tone-freq">Source Pitch: <output id="tone-freq-out" for="tone-freq">105.4 Hz</output></label>
+          <input type="range" id="tone-freq" min="35" max="320" step="0.2" value="105.4">
+        </div>
+        <div class="btn-grid">
+          <button type="button" id="btn-tone" aria-pressed="false">Play Sine Tone</button>
+          <button type="button" id="btn-chant" aria-pressed="false">Play Baritone Chant</button>
+          <button type="button" id="btn-sweep" aria-pressed="false">Sweep 40&ndash;220 Hz</button>
+          <button type="button" id="btn-lock-peak">Lock to Primary Peak</button>
+          <button type="button" id="btn-clap">Impulse Clap + Rays</button>
+          <button type="button" id="btn-drum">Neolithic Frame Drum</button>
+          <button type="button" id="btn-mic" aria-pressed="false">Live Microphone</button>
+          <button type="button" id="btn-stop-all" class="btn-danger">Stop Audio</button>
+        </div>
+      </section>
+
+      <section class="panel-card">
+        <h2>ISO 3382 Octave Acoustics</h2>
+        <canvas id="rt60-canvas" width="360" height="135" role="img" aria-label="Octave-band T60 and EDT bar chart for the active acoustic station"></canvas>
+        <details>
+          <summary>Octave-Band Table &amp; Archaeoacoustic Literature</summary>
+          <div class="details-body">
+            <table class="iso-table">
+              <caption>ISO 3382 parameters for active station</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Band</th>
+                  <th scope="col">T<sub>60</sub> (s)</th>
+                  <th scope="col">EDT (s)</th>
+                  <th scope="col">C<sub>80</sub> (dB)</th>
+                  <th scope="col">D<sub>50</sub> (%)</th>
+                </tr>
+              </thead>
+              <tbody id="iso-table-body"></tbody>
+            </table>
+            <p class="muted-note">
+              Benchmarked against O'Kelly (1982) excavation dimensions (18.95 m passage, 6.55 &times; 5.25 &times; 6.00 m cruciform chamber) and Jahn, Devereux &amp; Ibison (1996, <em>JASA</em>) 95&ndash;120 Hz standing-wave measurements.
+            </p>
+          </div>
+        </details>
+      </section>
+    </aside>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

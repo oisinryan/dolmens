@@ -1,0 +1,344 @@
+{
+  "binaryFile": "newgrange_scene.bin",
+  "totalBytes": 2553240,
+  "meshes": [
+    {
+      "name": "interior_orthostats",
+      "layer": "interior",
+      "vertexCount": 10782,
+      "indexCount": 46116,
+      "opacity": 1.0,
+      "roughness": 0.9,
+      "doubleSided": false,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 0,
+        "byteLength": 129384
+      },
+      "norm": {
+        "byteOffset": 129384,
+        "byteLength": 129384
+      },
+      "col": {
+        "byteOffset": 258768,
+        "byteLength": 129384
+      },
+      "idx": {
+        "byteOffset": 388152,
+        "byteLength": 184464
+      }
+    },
+    {
+      "name": "corbelled_vault_exterior",
+      "layer": "vault",
+      "vertexCount": 4368,
+      "indexCount": 20412,
+      "opacity": 1.0,
+      "roughness": 0.92,
+      "doubleSided": false,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 572616,
+        "byteLength": 52416
+      },
+      "norm": {
+        "byteOffset": 625032,
+        "byteLength": 52416
+      },
+      "col": {
+        "byteOffset": 677448,
+        "byteLength": 52416
+      },
+      "idx": {
+        "byteOffset": 729864,
+        "byteLength": 81648
+      }
+    },
+    {
+      "name": "roofbox_structure",
+      "layer": "interior",
+      "vertexCount": 1462,
+      "indexCount": 6768,
+      "opacity": 1.0,
+      "roughness": 0.76,
+      "doubleSided": false,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 811512,
+        "byteLength": 17544
+      },
+      "norm": {
+        "byteOffset": 829056,
+        "byteLength": 17544
+      },
+      "col": {
+        "byteOffset": 846600,
+        "byteLength": 17544
+      },
+      "idx": {
+        "byteOffset": 864144,
+        "byteLength": 27072
+      }
+    },
+    {
+      "name": "granite_basins",
+      "layer": "interior",
+      "vertexCount": 1232,
+      "indexCount": 6720,
+      "opacity": 1.0,
+      "roughness": 0.78,
+      "doubleSided": false,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 891216,
+        "byteLength": 14784
+      },
+      "norm": {
+        "byteOffset": 906000,
+        "byteLength": 14784
+      },
+      "col": {
+        "byteOffset": 920784,
+        "byteLength": 14784
+      },
+      "idx": {
+        "byteOffset": 935568,
+        "byteLength": 26880
+      }
+    },
+    {
+      "name": "chamber_floor",
+      "layer": "interior",
+      "vertexCount": 352,
+      "indexCount": 1524,
+      "opacity": 1.0,
+      "roughness": 0.95,
+      "doubleSided": false,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 962448,
+        "byteLength": 4224
+      },
+      "norm": {
+        "byteOffset": 966672,
+        "byteLength": 4224
+      },
+      "col": {
+        "byteOffset": 970896,
+        "byteLength": 4224
+      },
+      "idx": {
+        "byteOffset": 975120,
+        "byteLength": 6096
+      }
+    },
+    {
+      "name": "quartz_facade",
+      "layer": "exterior",
+      "vertexCount": 658,
+      "indexCount": 2952,
+      "opacity": 1.0,
+      "roughness": 0.74,
+      "doubleSided": false,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 981216,
+        "byteLength": 7896
+      },
+      "norm": {
+        "byteOffset": 989112,
+        "byteLength": 7896
+      },
+      "col": {
+        "byteOffset": 997008,
+        "byteLength": 7896
+      },
+      "idx": {
+        "byteOffset": 1004904,
+        "byteLength": 11808
+      }
+    },
+    {
+      "name": "granodiorite_cobbles",
+      "layer": "exterior",
+      "vertexCount": 17248,
+      "indexCount": 60984,
+      "opacity": 1.0,
+      "roughness": 0.78,
+      "doubleSided": false,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 1016712,
+        "byteLength": 206976
+      },
+      "norm": {
+        "byteOffset": 1223688,
+        "byteLength": 206976
+      },
+      "col": {
+        "byteOffset": 1430664,
+        "byteLength": 206976
+      },
+      "idx": {
+        "byteOffset": 1637640,
+        "byteLength": 243936
+      }
+    },
+    {
+      "name": "kerbstones",
+      "layer": "exterior",
+      "vertexCount": 1782,
+      "indexCount": 8640,
+      "opacity": 1.0,
+      "roughness": 0.86,
+      "doubleSided": false,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 1881576,
+        "byteLength": 21384
+      },
+      "norm": {
+        "byteOffset": 1902960,
+        "byteLength": 21384
+      },
+      "col": {
+        "byteOffset": 1924344,
+        "byteLength": 21384
+      },
+      "idx": {
+        "byteOffset": 1945728,
+        "byteLength": 34560
+      }
+    },
+    {
+      "name": "mound_west_half",
+      "layer": "mound_west",
+      "vertexCount": 1792,
+      "indexCount": 9780,
+      "opacity": 1.0,
+      "roughness": 0.94,
+      "doubleSided": true,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 1980288,
+        "byteLength": 21504
+      },
+      "norm": {
+        "byteOffset": 2001792,
+        "byteLength": 21504
+      },
+      "col": {
+        "byteOffset": 2023296,
+        "byteLength": 21504
+      },
+      "idx": {
+        "byteOffset": 2044800,
+        "byteLength": 39120
+      }
+    },
+    {
+      "name": "mound_east_half",
+      "layer": "mound_east",
+      "vertexCount": 1792,
+      "indexCount": 9780,
+      "opacity": 1.0,
+      "roughness": 0.94,
+      "doubleSided": true,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 2083920,
+        "byteLength": 21504
+      },
+      "norm": {
+        "byteOffset": 2105424,
+        "byteLength": 21504
+      },
+      "col": {
+        "byteOffset": 2126928,
+        "byteLength": 21504
+      },
+      "idx": {
+        "byteOffset": 2148432,
+        "byteLength": 39120
+      }
+    },
+    {
+      "name": "boyne_terrain",
+      "layer": "terrain",
+      "vertexCount": 1936,
+      "indexCount": 11094,
+      "opacity": 1.0,
+      "roughness": 0.96,
+      "doubleSided": false,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 2187552,
+        "byteLength": 23232
+      },
+      "norm": {
+        "byteOffset": 2210784,
+        "byteLength": 23232
+      },
+      "col": {
+        "byteOffset": 2234016,
+        "byteLength": 23232
+      },
+      "idx": {
+        "byteOffset": 2257248,
+        "byteLength": 44376
+      }
+    },
+    {
+      "name": "solstice_beam",
+      "layer": "solstice",
+      "vertexCount": 24,
+      "indexCount": 120,
+      "opacity": 0.34,
+      "roughness": 0.2,
+      "doubleSided": true,
+      "emissive": true,
+      "pos": {
+        "byteOffset": 2301624,
+        "byteLength": 288
+      },
+      "norm": {
+        "byteOffset": 2301912,
+        "byteLength": 288
+      },
+      "col": {
+        "byteOffset": 2302200,
+        "byteLength": 288
+      },
+      "idx": {
+        "byteOffset": 2302488,
+        "byteLength": 480
+      }
+    },
+    {
+      "name": "newgrange_acoustic_interior",
+      "layer": "acoustic_cavity",
+      "vertexCount": 4172,
+      "indexCount": 25020,
+      "opacity": 1.0,
+      "roughness": 0.9,
+      "doubleSided": false,
+      "emissive": false,
+      "pos": {
+        "byteOffset": 2302968,
+        "byteLength": 50064
+      },
+      "norm": {
+        "byteOffset": 2353032,
+        "byteLength": 50064
+      },
+      "col": {
+        "byteOffset": 2403096,
+        "byteLength": 50064
+      },
+      "idx": {
+        "byteOffset": 2453160,
+        "byteLength": 100080
+      }
+    }
+  ]
+}
