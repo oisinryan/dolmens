@@ -6,6 +6,7 @@ The public website: a home page, the report, the figure plates, the interactive 
 - **Plates:** `../figures/plates/`, captioned from the report's Appendix A.
 - **Presentation and receiver:** `../presentation/web/index.html` and `../restored-dolmen/index.html`, with a link back home. The receiver also offers `dolmen-restored.glb`.
 - **Newgrange:** `../newgrange/viewer/index.html`, bundled with its 3D models (`.glb`, `.stl`, `.obj`), 3D FDTD eigenmodes, ray-traced paths, 48 kHz impulse responses (`.wav`), and diagnostic plots.
+- **Chambers:** `../chambers/viewer/index.html`, comparative 3D observatory & interactive explainers (*The Note in the Stone*) covering Maeshowe, Newgrange, Loughcrew Cairn L, Wayland's Smithy, Chûn Quoit, and Carn Euny with `.glb` downloads and 3D FDTD experiment curves.
 
 Rebuild those two first if their sources changed (`npm run build-web` in `presentation/`, `npm run build` in `restored-dolmen/`).
 

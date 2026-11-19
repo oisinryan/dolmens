@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en-IE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>The Note in the Stone | Comparative Megalithic Chamber Acoustics</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#gallery-section" class="skip-link visually-hidden">Skip to Interactive 3D Chambers</a>
+
+  <main class="page">
+    <section class="sheet hero">
+      <div class="eyebrow">Archaeoacoustics &bull; Ireland, Orkney &amp; Britain</div>
+      <h1>The Note in the Stone</h1>
+      <p class="sub">Standing waves, Helmholtz pressure vessels, and six Neolithic &amp; Iron Age stone chambers</p>
+      <p class="lede">
+        In 1994, engineers Robert Jahn, Paul Devereux, and Michael Ibison measured six prehistoric stone chambers across Britain and Ireland and found every one resonated tightly between <strong>95 and 120 Hz</strong> &mdash; squarely inside the adult male voice range. Four years later, Aaron Watson and David Keating measured Orkney&rsquo;s clay-sealed <strong>Maeshowe</strong> pulsing at <strong>2 Hz</strong> (120 dB) like a giant Helmholtz lung, while <strong>Newgrange</strong> stayed silent at 2 Hz because its rounded boulders leak air. Explore all six 3D models, live FDTD wave simulations, and falsifiable tests below.
+      </p>
+      <div class="status">
+        <span class="stamp meas">MEASURED PHYSICS</span>
+        <span>Standing waves &amp; Helmholtz effects are directly measurable; builder intent remains open. Source synthesis: <a href="https://thenommo.com/articles/megalithic-chamber-acoustics-newgrange-maeshowe.html" rel="noopener noreferrer"><em>The Note in the Stone</em> (The Nommo)</a>.</span>
+      </div>
+      <div class="figs">
+        <div class="fig"><div class="v">95&ndash;120<small>Hz</small></div><div class="k">Resonant band across all 6 surveyed chambers</div></div>
+        <div class="fig"><div class="v">115<small>&plusmn;21 Hz</small></div><div class="k">Adult male mean speaking pitch (female: 199 Hz)</div></div>
+        <div class="fig"><div class="v">109.8<small>Hz</small></div><div class="k">Maeshowe square stacked modes (3,0,0) &amp; (0,3,0)</div></div>
+        <div class="fig"><div class="v">2.0<small>Hz</small></div><div class="k">Maeshowe Helmholtz pulse (120 dB walking; &gt;110 dB drum)</div></div>
+        <div class="fig"><div class="v">0<small>dB</small></div><div class="k">Newgrange Helmholtz response (permeable cairn)</div></div>
+      </div>
+    </section>
+
+    <section id="gallery-section" class="sheet section-block">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Interactive 3D Multi-Monument Observatory</div>
+          <h2>Six Chambers in Cutaway 3D</h2>
+        </div>
+        <div class="head-links">
+          <a id="dl-site-glb" class="dl-btn" href="../models/maeshowe.glb" download>Download Active .glb</a>
+          <a class="dl-btn" href="../../newgrange/viewer/">Full Newgrange Acoustics Studio &rarr;</a>
+        </div>
+      </div>
+
+      <div class="site-tabs" role="group" aria-label="Select Monument 3D Model">
+        <button type="button" class="site-tab" data-site="maeshowe" aria-pressed="true">Maeshowe (Orkney)</button>
+        <button type="button" class="site-tab" data-site="newgrange" aria-pressed="false">Newgrange (Meath)</button>
+        <button type="button" class="site-tab" data-site="loughcrew_l" aria-pressed="false">Loughcrew Cairn L</button>
+        <button type="button" class="site-tab" data-site="waylands_smithy" aria-pressed="false">Wayland&rsquo;s Smithy</button>
+        <button type="button" class="site-tab" data-site="chun_quoit" aria-pressed="false">Ch&ucirc;n Quoit</button>
+        <button type="button" class="site-tab" data-site="carn_euny" aria-pressed="false">Carn Euny</button>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="canvas-wrap">
+          <canvas id="gl-chambers" aria-label="Interactive 3D architectural and standing-wave cutaway of selected megalithic chamber"></canvas>
+          <p class="gl-hint">Drag: Orbit &bull; Scroll: Zoom &bull; Right-drag: Pan &bull; <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>: Walk</p>
+        </div>
+
+        <aside class="site-inspector" aria-label="Active Monument Controls and Telemetry">
+          <div class="site-meta">
+            <h3 id="site-title">Maeshowe</h3>
+            <p id="site-sub" class="muted-note"></p>
+            <dl id="site-specs" class="spec-list"></dl>
+            <ul id="site-bullets" class="bullet-list"></ul>
+          </div>
+
+          <div class="ctrl-group">
+            <h3>3D Section &amp; Wave Field</h3>
+            <div class="control-row">
+              <label for="cut-axis">Cutaway Plane</label>
+              <select id="cut-axis">
+                <option value="0" selected>Longitudinal X-Cut</option>
+                <option value="1">Transverse Y-Cut</option>
+                <option value="2">Plan Z-Cut (Horizontal)</option>
+                <option value="-1">Unbroken Exterior</option>
+              </select>
+            </div>
+            <div class="control-row">
+              <label for="cut-pos">Section Offset: <output id="cut-pos-out" for="cut-pos">0.20 m</output></label>
+              <input type="range" id="cut-pos" min="-4.0" max="4.0" step="0.05" value="0.20">
+            </div>
+            <div class="chk-stack">
+              <label for="chk-mound-east">
+                <input type="checkbox" id="chk-mound-east">
+                <span>Show East Mound Half</span>
+              </label>
+              <label for="chk-scale-fig">
+                <input type="checkbox" id="chk-scale-fig" checked>
+                <span>1.75 m Human Scale Figure</span>
+              </label>
+              <label for="chk-wave-slice">
+                <input type="checkbox" id="chk-wave-slice" checked>
+                <span>3D Standing-Wave Field</span>
+              </label>
+              <label for="chk-partitions" id="wrap-partitions">
+                <input type="checkbox" id="chk-partitions" checked>
+                <span>Loughcrew 7-Bay Partitions</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="ctrl-group">
+            <h3>Web Audio Chamber Voice &amp; Pulse</h3>
+            <div class="control-row">
+              <label for="audio-pitch">Tone / Chant Pitch: <output id="audio-pitch-out" for="audio-pitch">109.8 Hz</output></label>
+              <input type="range" id="audio-pitch" min="60" max="220" step="0.2" value="109.8">
+            </div>
+            <div class="control-row">
+              <label for="audio-vol">Volume: <output id="audio-vol-out" for="audio-vol">65%</output></label>
+              <input type="range" id="audio-vol" min="0" max="100" step="1" value="65">
+            </div>
+            <div class="btn-row">
+              <button type="button" id="btn-play-tone" aria-pressed="false">Sine Tone</button>
+              <button type="button" id="btn-play-chant" aria-pressed="false">Baritone Chant</button>
+              <button type="button" id="btn-play-pulse" aria-pressed="false">2 Hz Pulse Drum</button>
+              <button type="button" id="btn-audio-stop" class="btn-stop">Stop</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="sheet section-block">
+      <div class="eyebrow">Explainer 01 &bull; Sections 02 &amp; 03</div>
+      <h2>Six Rooms, One Narrow Band &amp; The Arithmetic of a Human Room</h2>
+      <div class="two-col">
+        <div class="explainer-card">
+          <h3>Empirical Resonances vs Human Voice Pitch</h3>
+          <p class="muted-note">Every surveyed monument sits inside 95&ndash;120 Hz alongside the average male speaking fundamental (115 &plusmn; 21 Hz). Click any site marker to inspect its 3D model above.</p>
+          <canvas id="band-canvas" width="540" height="270" role="img" aria-label="Comparison plot of seven prehistoric chamber resonances between 95 and 120 Hz against male and female voice pitch distributions"></canvas>
+        </div>
+
+        <div class="explainer-card">
+          <h3>Interactive Room-Mode Arithmetic Calculator</h3>
+          <p class="muted-note">Build any stone chamber to human scale and compute rigid-wall eigenmodes below 130 Hz. Notice how Maeshowe&rsquo;s 4.7 m square stacks (3,0,0) and (0,3,0) identically onto <strong>109.8 Hz</strong>.</p>
+          <div class="preset-row" role="group" aria-label="Room Calculator Presets">
+            <button type="button" class="preset-btn" data-box="4.7,4.7,4.5,20">Maeshowe (4.7&times;4.7&times;4.5 m)</button>
+            <button type="button" class="preset-btn" data-box="1.5,1.5,1.5,20">Ch&ucirc;n Quoit (1.5 m Cube)</button>
+            <button type="button" class="preset-btn" data-box="1.5,1.5,1.65,11">Wayland&rsquo;s Side Arm</button>
+            <button type="button" class="preset-btn" data-box="2.9,3.2,6.0,11">Newgrange Core</button>
+          </div>
+          <div class="calc-sliders">
+            <div class="control-row">
+              <label for="calc-lx">Width L<sub>x</sub>: <output id="calc-lx-out" for="calc-lx">4.7 m</output></label>
+              <input type="range" id="calc-lx" min="1.0" max="8.0" step="0.05" value="4.7">
+            </div>
+            <div class="control-row">
+              <label for="calc-ly">Length L<sub>y</sub>: <output id="calc-ly-out" for="calc-ly">4.7 m</output></label>
+              <input type="range" id="calc-ly" min="1.0" max="8.0" step="0.05" value="4.7">
+            </div>
+            <div class="control-row">
+              <label for="calc-lz">Height L<sub>z</sub>: <output id="calc-lz-out" for="calc-lz">4.5 m</output></label>
+              <input type="range" id="calc-lz" min="1.0" max="7.0" step="0.05" value="4.5">
+            </div>
+            <div class="control-row">
+              <label for="calc-temp">Air Temp: <output id="calc-temp-out" for="calc-temp">20 &deg;C</output></label>
+              <input type="range" id="calc-temp" min="0" max="25" step="1" value="20">
+            </div>
+          </div>
+          <div id="calc-results" class="calc-readout"></div>
+        </div>
+      </div>
+
+      <details class="data-disclosure">
+        <summary>Complete Measured Parameters Table (7 Monuments)</summary>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Summary of dimensions, masonry, standing-wave resonances, and Helmholtz measurements</caption>
+            <thead>
+              <tr>
+                <th scope="col">Site</th>
+                <th scope="col">Chamber (m)</th>
+                <th scope="col">Passage (m)</th>
+                <th scope="col">Measured Pitch</th>
+                <th scope="col">Helmholtz (Low-Freq)</th>
+                <th scope="col">Fabric &amp; Sealing</th>
+              </tr>
+            </thead>
+            <tbody id="sites-table-body"></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <section class="sheet section-block">
+      <div class="eyebrow">Explainer 02 &bull; Sections 04 &amp; 05</div>
+      <h2>Square vs Irregular Chambers &amp; Walking Newgrange&rsquo;s 19-Metre Pipe</h2>
+      <div class="two-col">
+        <div class="explainer-card">
+          <h3>3D FDTD Transfer Function: Maeshowe vs Newgrange</h3>
+          <p class="muted-note">Computed via 3D locally reacting wave equations: Maeshowe&rsquo;s tightly dressed square chamber concentrates energy into a razor-sharp resonance (Q = 53.5), whereas Newgrange&rsquo;s cruciform boulder geometry distributes energy across twin peaks.</p>
+          <canvas id="cmp-frf-canvas" width="540" height="240" role="img" aria-label="Overlaid 3D FDTD frequency response curves from 20 to 260 Hz comparing Maeshowe and Newgrange"></canvas>
+        </div>
+
+        <div class="explainer-card">
+          <h3>Walk the 12 Standing-Wave Loops Along Newgrange&rsquo;s Passage</h3>
+          <p class="muted-note">At 105.4 Hz (&lambda;/2 &approx; 1.61 m), standing waves form fixed pressure nodes and antinodes end-to-end down the 18.95 m passage. Drag the listener to inspect the SPL profile.</p>
+          <div class="control-row">
+            <label for="walk-y">Listener Position Y: <output id="walk-y-out" for="walk-y">10.0 m (Mid-Passage)</output></label>
+            <input type="range" id="walk-y" min="0.25" max="24.0" step="0.25" value="10.0">
+          </div>
+          <canvas id="passage-walk-canvas" width="540" height="190" role="img" aria-label="Longitudinal standing-wave SPL profile along Newgrange's 19 m passage and chamber"></canvas>
+          <p id="walk-readout" class="mono-stat"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet section-block">
+      <div class="eyebrow">Explainer 03 &bull; Sections 06 &amp; 07</div>
+      <h2>The Pressure Vessel: Why Maeshowe Pulses at 2 Hz &amp; Newgrange Stays Silent</h2>
+      <div class="two-col">
+        <div class="explainer-card">
+          <h3>Interactive Helmholtz Cavity &amp; Leakage Simulator</h3>
+          <p class="muted-note">At 2 Hz (&lambda; &approx; 172 m), the chamber air breathes through the passage like a bottle neck. Slide between <strong>Clay-Sealed (Maeshowe)</strong> and <strong>Permeable Boulders (Newgrange)</strong> to watch acoustic leakage collapse the Q-factor.</p>
+          <div class="calc-sliders">
+            <div class="control-row">
+              <label for="helm-leak">Wall Permeability / Leakage: <output id="helm-leak-out" for="helm-leak">0% (Maeshowe Clay-Sealed)</output></label>
+              <input type="range" id="helm-leak" min="0" max="100" step="1" value="0">
+            </div>
+            <div class="control-row">
+              <label for="helm-vol">Chamber Volume: <output id="helm-vol-out" for="helm-vol">92 m&sup3;</output></label>
+              <input type="range" id="helm-vol" min="40" max="160" step="2" value="92">
+            </div>
+          </div>
+          <canvas id="helm-canvas" width="540" height="230" role="img" aria-label="Infrasonic Helmholtz resonance frequency response curve from 0.2 to 8 Hz showing Maeshowe 2 Hz peak vs damped permeable cairn"></canvas>
+        </div>
+
+        <div class="explainer-card">
+          <h3>Live Cavity-Lung Airflow &amp; Pressure Cycle</h3>
+          <p class="muted-note">Visualizes air oscillating in and out of the passage neck (120 dB when walking in Maeshowe; &gt;110 dB with a drum beaten twice per second) versus pressure leaking out through unsealed boulder joints and roof rainwater channels at Newgrange.</p>
+          <canvas id="lung-canvas" width="540" height="240" role="img" aria-label="Animated schematic of chamber-passage Helmholtz airflow and wall leakage"></canvas>
+          <div class="btn-row">
+            <button type="button" class="preset-btn" id="btn-helm-maeshowe">Preset: Maeshowe (Sealed 2 Hz)</button>
+            <button type="button" class="preset-btn" id="btn-helm-newgrange">Preset: Newgrange (Permeable)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet section-block">
+      <div class="eyebrow">Explainer 04 &bull; Section 10</div>
+      <h2>Four Falsifiable Acoustic Tests (3D FDTD Computational Checks)</h2>
+      <p class="lede-sm"><em>The Note in the Stone</em> proposes four concrete physical tests capable of settling craft claims. Below are live 3D FDTD simulations computed directly on our monument geometries.</p>
+
+      <div class="site-tabs" role="group" aria-label="Select Falsifiable Test Simulation">
+        <button type="button" class="test-tab" data-test="test1" aria-pressed="true">Test 1: Square vs Irregular</button>
+        <button type="button" class="test-tab" data-test="test2" aria-pressed="false">Test 2: Loughcrew Partitions ON/OFF</button>
+        <button type="button" class="test-tab" data-test="test3" aria-pressed="false">Test 3: Sealed vs Leaking Cairn</button>
+        <button type="button" class="test-tab" data-test="test4" aria-pressed="false">Test 4: Newgrange Roof-Box Mouthpiece</button>
+      </div>
+
+      <div class="two-col">
+        <div class="explainer-card">
+          <h3 id="test-title">Test 1: Square vs Irregular Chamber Sharpness</h3>
+          <p id="test-desc" class="muted-note"></p>
+          <div id="test-stats" class="calc-readout"></div>
+          <div class="btn-row" id="test-actions"></div>
+        </div>
+        <div class="explainer-card">
+          <canvas id="test-canvas" width="540" height="250" role="img" aria-label="3D FDTD simulation plot comparing the selected experimental test conditions"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet section-block">
+      <div class="eyebrow">Sections 08 &ndash; 10 &amp; Sources</div>
+      <h2>The 110-Hz Brain, Cave Acoustics &amp; Weighing the Case</h2>
+      <div class="two-col">
+        <div class="explainer-card">
+          <h3>UCLA EEG Pilot (Cook, Pajot &amp; Leuchter 2008) &amp; Cave Evidence</h3>
+          <canvas id="eeg-canvas" width="540" height="190" role="img" aria-label="Summary chart of the five frequencies tested in Cook et al. 2008 EEG pilot study showing 110 Hz left-temporal drop"></canvas>
+          <ul class="bullet-list">
+            <li><strong>Cook et al. (2008):</strong> 30 adults exposed to 90, 100, 110, 120 &amp; 130 Hz showed reduced left-temporal (language) activity and frontal shift at <strong>110 Hz</strong>.</li>
+            <li><strong>Watson &amp; Was (2021) Caveat:</strong> Noted &ldquo;no robust scientific evidence that single frequencies can trigger specific physiological effects&rdquo; and flagged inconsistencies in the 2008 pilot.</li>
+            <li><strong>Palaeolithic Caves (Fazenda et al. 2017):</strong> Across 5 northern Spanish caves (up to 40,000 yrs old), lines/dots showed a &ldquo;statistically weak but tenable&rdquo; link to low-frequency rock resonances.</li>
+            <li><strong>Etruscan Tombs (Ortoleva &amp; Forte 2026):</strong> 5th-century BCE painted tombs exhibited engineered reverberation built to affect living ritual listeners.</li>
+          </ul>
+        </div>
+
+        <div class="explainer-card">
+          <h3>Mainstream Accidental Case vs Learned-by-Ear Craft</h3>
+          <div class="verdict-stack">
+            <div class="verdict-box blue-box">
+              <h4>Mainstream / Accidental Physics Case</h4>
+              <p>Build any dry-stone room to human scale (~1.5&ndash;4.7 m) and low-frequency standing waves inevitably land in the 95&ndash;120 Hz male voice range. Only one pilot season (1994) mapped 6 sites, Newgrange has zero Helmholtz pulse, and Jahn, Watson &amp; Was all state builder intent cannot be proved.</p>
+            </div>
+            <div class="verdict-box rust-box">
+              <h4>Learned-by-Ear Architectural Craft</h4>
+              <p>What stays striking is accumulation: Europe&rsquo;s finest Neolithic stonework at Maeshowe is square (stacking 109.8 Hz), clay-sealed (holding 2 Hz at 120 dB), and coupled past a recessed blocking stone; Loughcrew&rsquo;s partitions shift resonance cleanly to 108&ndash;110 Hz; and Newgrange&rsquo;s solstice slot is also an effective acoustic aperture into its 19 m pipe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="data-disclosure" open>
+        <summary>Primary Sources &amp; Bibliography (16 Citations via The Nommo)</summary>
+        <ol id="sources-list" class="sources-ol"></ol>
+      </details>
+    </section>
+
+    <div id="chambers-live" class="visually-hidden" aria-live="polite"></div>
+  </main>
+
+  <script type="module" src="chambers_app.js"></script>
+</body>
+</html>

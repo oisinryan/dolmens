@@ -1,0 +1,763 @@
+{
+  "binaryFile": "chambers_scene.bin",
+  "totalBytes": 3688392,
+  "scaleFigure": {
+    "name": "scale_human_175cm",
+    "layer": "scale_figure",
+    "indexCount": 672,
+    "opacity": 1.0,
+    "emissive": false,
+    "pos": {
+      "byteOffset": 3681384,
+      "byteLength": 1440
+    },
+    "norm": {
+      "byteOffset": 3682824,
+      "byteLength": 1440
+    },
+    "col": {
+      "byteOffset": 3684264,
+      "byteLength": 1440
+    },
+    "idx": {
+      "byteOffset": 3685704,
+      "byteLength": 2688
+    }
+  },
+  "scalePositions": {
+    "maeshowe": [
+      0.0,
+      13.35,
+      0.0
+    ],
+    "newgrange": [
+      0.0,
+      20.55,
+      1.95
+    ],
+    "loughcrew_l": [
+      -0.35,
+      8.2,
+      0.0
+    ],
+    "waylands_smithy": [
+      0.0,
+      5.75,
+      0.0
+    ],
+    "chun_quoit": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "carn_euny": [
+      0.0,
+      10.8,
+      0.0
+    ]
+  },
+  "sites": {
+    "maeshowe": [
+      {
+        "name": "maeshowe_stones",
+        "layer": "interior",
+        "indexCount": 28116,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 0,
+          "byteLength": 95424
+        },
+        "norm": {
+          "byteOffset": 95424,
+          "byteLength": 95424
+        },
+        "col": {
+          "byteOffset": 190848,
+          "byteLength": 95424
+        },
+        "idx": {
+          "byteOffset": 286272,
+          "byteLength": 112464
+        }
+      },
+      {
+        "name": "maeshowe_floor",
+        "layer": "interior",
+        "indexCount": 396,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 398736,
+          "byteLength": 1344
+        },
+        "norm": {
+          "byteOffset": 400080,
+          "byteLength": 1344
+        },
+        "col": {
+          "byteOffset": 401424,
+          "byteLength": 1344
+        },
+        "idx": {
+          "byteOffset": 402768,
+          "byteLength": 1584
+        }
+      },
+      {
+        "name": "maeshowe_mound_west",
+        "layer": "mound_west",
+        "indexCount": 5136,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 404352,
+          "byteLength": 11616
+        },
+        "norm": {
+          "byteOffset": 415968,
+          "byteLength": 11616
+        },
+        "col": {
+          "byteOffset": 427584,
+          "byteLength": 11616
+        },
+        "idx": {
+          "byteOffset": 439200,
+          "byteLength": 20544
+        }
+      },
+      {
+        "name": "maeshowe_mound_east",
+        "layer": "mound_east",
+        "indexCount": 5136,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 459744,
+          "byteLength": 11616
+        },
+        "norm": {
+          "byteOffset": 471360,
+          "byteLength": 11616
+        },
+        "col": {
+          "byteOffset": 482976,
+          "byteLength": 11616
+        },
+        "idx": {
+          "byteOffset": 494592,
+          "byteLength": 20544
+        }
+      }
+    ],
+    "newgrange": [
+      {
+        "name": "interior_orthostats",
+        "layer": "interior",
+        "indexCount": 46116,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 515136,
+          "byteLength": 129384
+        },
+        "norm": {
+          "byteOffset": 644520,
+          "byteLength": 129384
+        },
+        "col": {
+          "byteOffset": 773904,
+          "byteLength": 129384
+        },
+        "idx": {
+          "byteOffset": 903288,
+          "byteLength": 184464
+        }
+      },
+      {
+        "name": "corbelled_vault_exterior",
+        "layer": "vault",
+        "indexCount": 20412,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 1087752,
+          "byteLength": 52416
+        },
+        "norm": {
+          "byteOffset": 1140168,
+          "byteLength": 52416
+        },
+        "col": {
+          "byteOffset": 1192584,
+          "byteLength": 52416
+        },
+        "idx": {
+          "byteOffset": 1245000,
+          "byteLength": 81648
+        }
+      },
+      {
+        "name": "roofbox_structure",
+        "layer": "interior",
+        "indexCount": 6768,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 1326648,
+          "byteLength": 17544
+        },
+        "norm": {
+          "byteOffset": 1344192,
+          "byteLength": 17544
+        },
+        "col": {
+          "byteOffset": 1361736,
+          "byteLength": 17544
+        },
+        "idx": {
+          "byteOffset": 1379280,
+          "byteLength": 27072
+        }
+      },
+      {
+        "name": "granite_basins",
+        "layer": "interior",
+        "indexCount": 6720,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 1406352,
+          "byteLength": 14784
+        },
+        "norm": {
+          "byteOffset": 1421136,
+          "byteLength": 14784
+        },
+        "col": {
+          "byteOffset": 1435920,
+          "byteLength": 14784
+        },
+        "idx": {
+          "byteOffset": 1450704,
+          "byteLength": 26880
+        }
+      },
+      {
+        "name": "chamber_floor",
+        "layer": "interior",
+        "indexCount": 1524,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 1477584,
+          "byteLength": 4224
+        },
+        "norm": {
+          "byteOffset": 1481808,
+          "byteLength": 4224
+        },
+        "col": {
+          "byteOffset": 1486032,
+          "byteLength": 4224
+        },
+        "idx": {
+          "byteOffset": 1490256,
+          "byteLength": 6096
+        }
+      },
+      {
+        "name": "quartz_facade",
+        "layer": "exterior",
+        "indexCount": 2952,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 1496352,
+          "byteLength": 7896
+        },
+        "norm": {
+          "byteOffset": 1504248,
+          "byteLength": 7896
+        },
+        "col": {
+          "byteOffset": 1512144,
+          "byteLength": 7896
+        },
+        "idx": {
+          "byteOffset": 1520040,
+          "byteLength": 11808
+        }
+      },
+      {
+        "name": "granodiorite_cobbles",
+        "layer": "exterior",
+        "indexCount": 60984,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 1531848,
+          "byteLength": 206976
+        },
+        "norm": {
+          "byteOffset": 1738824,
+          "byteLength": 206976
+        },
+        "col": {
+          "byteOffset": 1945800,
+          "byteLength": 206976
+        },
+        "idx": {
+          "byteOffset": 2152776,
+          "byteLength": 243936
+        }
+      },
+      {
+        "name": "kerbstones",
+        "layer": "exterior",
+        "indexCount": 8640,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 2396712,
+          "byteLength": 21384
+        },
+        "norm": {
+          "byteOffset": 2418096,
+          "byteLength": 21384
+        },
+        "col": {
+          "byteOffset": 2439480,
+          "byteLength": 21384
+        },
+        "idx": {
+          "byteOffset": 2460864,
+          "byteLength": 34560
+        }
+      },
+      {
+        "name": "mound_west_half",
+        "layer": "mound_west",
+        "indexCount": 9780,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 2495424,
+          "byteLength": 21504
+        },
+        "norm": {
+          "byteOffset": 2516928,
+          "byteLength": 21504
+        },
+        "col": {
+          "byteOffset": 2538432,
+          "byteLength": 21504
+        },
+        "idx": {
+          "byteOffset": 2559936,
+          "byteLength": 39120
+        }
+      },
+      {
+        "name": "mound_east_half",
+        "layer": "mound_east",
+        "indexCount": 9780,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 2599056,
+          "byteLength": 21504
+        },
+        "norm": {
+          "byteOffset": 2620560,
+          "byteLength": 21504
+        },
+        "col": {
+          "byteOffset": 2642064,
+          "byteLength": 21504
+        },
+        "idx": {
+          "byteOffset": 2663568,
+          "byteLength": 39120
+        }
+      },
+      {
+        "name": "solstice_beam",
+        "layer": "solstice",
+        "indexCount": 120,
+        "opacity": 0.34,
+        "emissive": true,
+        "pos": {
+          "byteOffset": 2702688,
+          "byteLength": 288
+        },
+        "norm": {
+          "byteOffset": 2702976,
+          "byteLength": 288
+        },
+        "col": {
+          "byteOffset": 2703264,
+          "byteLength": 288
+        },
+        "idx": {
+          "byteOffset": 2703552,
+          "byteLength": 480
+        }
+      }
+    ],
+    "loughcrew_l": [
+      {
+        "name": "loughcrew_stones",
+        "layer": "interior",
+        "indexCount": 9612,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 2704032,
+          "byteLength": 28608
+        },
+        "norm": {
+          "byteOffset": 2732640,
+          "byteLength": 28608
+        },
+        "col": {
+          "byteOffset": 2761248,
+          "byteLength": 28608
+        },
+        "idx": {
+          "byteOffset": 2789856,
+          "byteLength": 38448
+        }
+      },
+      {
+        "name": "loughcrew_partitions",
+        "layer": "partitions",
+        "indexCount": 2916,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 2828304,
+          "byteLength": 9720
+        },
+        "norm": {
+          "byteOffset": 2838024,
+          "byteLength": 9720
+        },
+        "col": {
+          "byteOffset": 2847744,
+          "byteLength": 9720
+        },
+        "idx": {
+          "byteOffset": 2857464,
+          "byteLength": 11664
+        }
+      },
+      {
+        "name": "loughcrew_floor",
+        "layer": "interior",
+        "indexCount": 396,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 2869128,
+          "byteLength": 1344
+        },
+        "norm": {
+          "byteOffset": 2870472,
+          "byteLength": 1344
+        },
+        "col": {
+          "byteOffset": 2871816,
+          "byteLength": 1344
+        },
+        "idx": {
+          "byteOffset": 2873160,
+          "byteLength": 1584
+        }
+      },
+      {
+        "name": "loughcrew_mound_west",
+        "layer": "mound_west",
+        "indexCount": 5136,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 2874744,
+          "byteLength": 11616
+        },
+        "norm": {
+          "byteOffset": 2886360,
+          "byteLength": 11616
+        },
+        "col": {
+          "byteOffset": 2897976,
+          "byteLength": 11616
+        },
+        "idx": {
+          "byteOffset": 2909592,
+          "byteLength": 20544
+        }
+      },
+      {
+        "name": "loughcrew_mound_east",
+        "layer": "mound_east",
+        "indexCount": 5136,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 2930136,
+          "byteLength": 11616
+        },
+        "norm": {
+          "byteOffset": 2941752,
+          "byteLength": 11616
+        },
+        "col": {
+          "byteOffset": 2953368,
+          "byteLength": 11616
+        },
+        "idx": {
+          "byteOffset": 2964984,
+          "byteLength": 20544
+        }
+      }
+    ],
+    "waylands_smithy": [
+      {
+        "name": "waylands_stones",
+        "layer": "interior",
+        "indexCount": 8316,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 2985528,
+          "byteLength": 28224
+        },
+        "norm": {
+          "byteOffset": 3013752,
+          "byteLength": 28224
+        },
+        "col": {
+          "byteOffset": 3041976,
+          "byteLength": 28224
+        },
+        "idx": {
+          "byteOffset": 3070200,
+          "byteLength": 33264
+        }
+      },
+      {
+        "name": "waylands_floor",
+        "layer": "interior",
+        "indexCount": 396,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 3103464,
+          "byteLength": 1344
+        },
+        "norm": {
+          "byteOffset": 3104808,
+          "byteLength": 1344
+        },
+        "col": {
+          "byteOffset": 3106152,
+          "byteLength": 1344
+        },
+        "idx": {
+          "byteOffset": 3107496,
+          "byteLength": 1584
+        }
+      },
+      {
+        "name": "waylands_mound_west",
+        "layer": "mound_west",
+        "indexCount": 5136,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 3109080,
+          "byteLength": 11616
+        },
+        "norm": {
+          "byteOffset": 3120696,
+          "byteLength": 11616
+        },
+        "col": {
+          "byteOffset": 3132312,
+          "byteLength": 11616
+        },
+        "idx": {
+          "byteOffset": 3143928,
+          "byteLength": 20544
+        }
+      },
+      {
+        "name": "waylands_mound_east",
+        "layer": "mound_east",
+        "indexCount": 5136,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 3164472,
+          "byteLength": 11616
+        },
+        "norm": {
+          "byteOffset": 3176088,
+          "byteLength": 11616
+        },
+        "col": {
+          "byteOffset": 3187704,
+          "byteLength": 11616
+        },
+        "idx": {
+          "byteOffset": 3199320,
+          "byteLength": 20544
+        }
+      }
+    ],
+    "chun_quoit": [
+      {
+        "name": "chun_stones",
+        "layer": "interior",
+        "indexCount": 4104,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 3219864,
+          "byteLength": 10752
+        },
+        "norm": {
+          "byteOffset": 3230616,
+          "byteLength": 10752
+        },
+        "col": {
+          "byteOffset": 3241368,
+          "byteLength": 10752
+        },
+        "idx": {
+          "byteOffset": 3252120,
+          "byteLength": 16416
+        }
+      },
+      {
+        "name": "chun_turf",
+        "layer": "interior",
+        "indexCount": 384,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 3268536,
+          "byteLength": 792
+        },
+        "norm": {
+          "byteOffset": 3269328,
+          "byteLength": 792
+        },
+        "col": {
+          "byteOffset": 3270120,
+          "byteLength": 792
+        },
+        "idx": {
+          "byteOffset": 3270912,
+          "byteLength": 1536
+        }
+      }
+    ],
+    "carn_euny": [
+      {
+        "name": "carn_stones",
+        "layer": "interior",
+        "indexCount": 22248,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 3272448,
+          "byteLength": 67848
+        },
+        "norm": {
+          "byteOffset": 3340296,
+          "byteLength": 67848
+        },
+        "col": {
+          "byteOffset": 3408144,
+          "byteLength": 67848
+        },
+        "idx": {
+          "byteOffset": 3475992,
+          "byteLength": 88992
+        }
+      },
+      {
+        "name": "carn_floor",
+        "layer": "interior",
+        "indexCount": 396,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 3564984,
+          "byteLength": 1344
+        },
+        "norm": {
+          "byteOffset": 3566328,
+          "byteLength": 1344
+        },
+        "col": {
+          "byteOffset": 3567672,
+          "byteLength": 1344
+        },
+        "idx": {
+          "byteOffset": 3569016,
+          "byteLength": 1584
+        }
+      },
+      {
+        "name": "carn_mound_west",
+        "layer": "mound_west",
+        "indexCount": 5136,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 3570600,
+          "byteLength": 11616
+        },
+        "norm": {
+          "byteOffset": 3582216,
+          "byteLength": 11616
+        },
+        "col": {
+          "byteOffset": 3593832,
+          "byteLength": 11616
+        },
+        "idx": {
+          "byteOffset": 3605448,
+          "byteLength": 20544
+        }
+      },
+      {
+        "name": "carn_mound_east",
+        "layer": "mound_east",
+        "indexCount": 5136,
+        "opacity": 1.0,
+        "emissive": false,
+        "pos": {
+          "byteOffset": 3625992,
+          "byteLength": 11616
+        },
+        "norm": {
+          "byteOffset": 3637608,
+          "byteLength": 11616
+        },
+        "col": {
+          "byteOffset": 3649224,
+          "byteLength": 11616
+        },
+        "idx": {
+          "byteOffset": 3660840,
+          "byteLength": 20544
+        }
+      }
+    ]
+  }
+}

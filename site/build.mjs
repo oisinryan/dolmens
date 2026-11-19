@@ -38,6 +38,7 @@ const NAV = [
   ["/presentation/", "Presentation"],
   ["/receiver/", "Receiver"],
   ["/newgrange/", "Newgrange"],
+  ["/chambers/", "Chambers"],
 ];
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -191,6 +192,34 @@ for (const f of readdirSync(new URL("newgrange/acoustics/plots/", repo))) {
   copy(`newgrange/acoustics/plots/${f}`, `newgrange/acoustics/plots/${f}`);
 }
 
+/* ---------------- comparative chambers observatory ---------------- */
+write(
+  "chambers/index.html",
+  withBar(read("chambers/viewer/index.html"), "/chambers/", false)
+    .replaceAll("../models/", "models/")
+    .replaceAll("../../newgrange/viewer/", "/newgrange/"),
+);
+copy("chambers/viewer/styles.css", "chambers/styles.css");
+copy("chambers/viewer/chambers_gl.js", "chambers/chambers_gl.js");
+copy("chambers/viewer/chambers_audio.js", "chambers/chambers_audio.js");
+write(
+  "chambers/chambers_app.js",
+  read("chambers/viewer/chambers_app.js")
+    .replaceAll("../data/", "data/")
+    .replaceAll("../../newgrange/acoustics/", "/newgrange/acoustics/")
+    .replaceAll("../models/", "models/")
+    .replaceAll("../../newgrange/models/", "/newgrange/models/"),
+);
+for (const f of readdirSync(new URL("chambers/viewer/data/", repo))) {
+  copy(`chambers/viewer/data/${f}`, `chambers/data/${f}`);
+}
+for (const f of readdirSync(new URL("chambers/data/", repo))) {
+  copy(`chambers/data/${f}`, `chambers/data/${f}`);
+}
+for (const f of readdirSync(new URL("chambers/models/", repo))) {
+  copy(`chambers/models/${f}`, `chambers/models/${f}`);
+}
+
 /* ---------------- home ---------------- */
 const part = (n, href, img, title, text, go) => `<a class="part" href="${href}"><img src="${img.startsWith("/") ? img : `/figures/plates/${img}`}" alt="" width="1920" height="1080" loading="lazy">
 <div class="body"><span class="n">${n}</span><h2>${title}</h2><p>${text}</p><span class="go">${go} →</span></div></a>`;
@@ -220,6 +249,7 @@ ${part("The report", "/report/", "plate-1-title.png", "Engineering concept repor
 ${part("Interactive", "/presentation/", "plate-4-range.png", "Presentation", "Eight slides with live controls: receiver gain and air absorption, the Slieve Gullion relays, an exploded tomb, and a pulse code you can play.", "Open the presentation")}
 ${part("3D model", "/receiver/", "plate-6-exploded.png", "Restored dolmen receiver", "A fully restored portal tomb in its cairn with a collector sized for at least +6 dB across 250–500 Hz, built from materials of the period.", "Explore the model")}
 ${part("3D acoustic model", "/newgrange/", "/newgrange/acoustics/plots/newgrange_plan_section.png", "Newgrange passage tomb", "Watertight O'Kelly geometry (18.95 m passage, 6.0 m corbelled vault) solved with 3D FDTD (105.4 Hz peak) and ray-tracing, with interactive WebGL2 cutaway and Web Audio auralization.", "Explore Newgrange")}
+${part("Comparative study", "/chambers/", "/newgrange/acoustics/plots/acoustic_frf_modes.png", "The Note in the Stone", "Six Neolithic & Iron Age chambers in 3D (Maeshowe, Newgrange, Loughcrew Cairn L, Wayland's Smithy, Chûn Quoit, Carn Euny) with live FDTD tests and interactive Helmholtz & room-mode explainers.", "Explore 6 chambers")}
 ${part("Appendix A", "/plates/", "plate-5-clusters.png", "Figure plates", "Eight plates that summarise the concept, from the all-island inventory to the test plan.", "See the plates")}
 </div>
 <div class="verdict">
@@ -241,4 +271,4 @@ write(
   "404.html",
   shell({ title: "Not found · Neolithic Acoustic Signal Network", description: "Page not found.", path: "", body: `<main class="page"><div class="sheet hero"><div class="eyebrow">404</div><h1 style="font-size:48px">Nothing here</h1><p class="lede"><a href="/">Back to the start</a>.</p></div></main>` }),
 );
-console.log(`publish/: home, report (${toc.length} sections), ${plates.length} plates, presentation, receiver, newgrange`);
+console.log(`publish/: home, report (${toc.length} sections), ${plates.length} plates, presentation, receiver, newgrange, chambers`);
